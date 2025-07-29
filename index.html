@@ -1,180 +1,1838 @@
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en" class="scroll-smooth dark">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Md Rifat Hossen | Software Architect</title>
+		<link
+			rel="icon"
+			type="image/x-icon"
+			href="https://avatars.githubusercontent.com/u/97046016?v=4"
+		/>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<script
+			src="https://kit.fontawesome.com/476c4c3806.js"
+			crossorigin="anonymous"
+		></script>
+		<script>
+			tailwind.config = {
+				darkMode: "class",
+				theme: {
+					extend: {
+						colors: {
+							primary: {
+								50: "#eff6ff",
+								100: "#dbeafe",
+								200: "#bfdbfe",
+								300: "#93c5fd",
+								400: "#60a5fa",
+								500: "#3b82f6",
+								600: "#2563eb",
+								700: "#1d4ed8",
+								800: "#1e40af",
+								900: "#1e3a8a",
+							},
+						},
+						animation: {
+							typing:
+								"typing 3.5s steps(40, end), blink-caret .75s step-end infinite",
+							"bounce-slow": "bounce 3s infinite",
+							"pulse-slow": "pulse 3s infinite",
+							"float-delayed": "float 3s ease-in-out infinite 1s",
+						},
+						keyframes: {
+							typing: {
+								from: { width: "0" },
+								to: { width: "100%" },
+							},
+							"blink-caret": {
+								"from, to": { "border-color": "transparent" },
+								"50%": { "border-color": "#6366f1" },
+							},
+						},
+					},
+				},
+			};
+		</script>
+		<style>
+			/* Custom Keyframes for animations */
+			@keyframes fadeIn {
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			@keyframes float {
+				0%,
+				100% {
+					transform: translateY(0);
+				}
+				50% {
+					transform: translateY(-5px);
+				}
+			}
+			@keyframes gradient-pan {
+				0% {
+					background-position: 0% 50%;
+				}
+				50% {
+					background-position: 100% 50%;
+				}
+				100% {
+					background-position: 0% 50%;
+				}
+			}
+			@keyframes slideInLeft {
+				from {
+					opacity: 0;
+					transform: translateX(-50px);
+				}
+				to {
+					opacity: 1;
+					transform: translateX(0);
+				}
+			}
+			@keyframes slideInRight {
+				from {
+					opacity: 0;
+					transform: translateX(50px);
+				}
+				to {
+					opacity: 1;
+					transform: translateX(0);
+				}
+			}
+			@keyframes bounce-in {
+				0% {
+					opacity: 0;
+					transform: scale(0.3);
+				}
+				50% {
+					opacity: 1;
+					transform: scale(1.05);
+				}
+				70% {
+					transform: scale(0.9);
+				}
+				100% {
+					opacity: 1;
+					transform: scale(1);
+				}
+			}
+			@keyframes code-typing {
+				from {
+					width: 0;
+				}
+				to {
+					width: 100%;
+				}
+			}
+			@keyframes cursor-blink {
+				from,
+				to {
+					border-color: transparent;
+				}
+				50% {
+					border-color: #10b981;
+				}
+			}
 
-        <link rel="stylesheet" href="assets/css/styles.css">
+			/* Animation Utility Classes */
+			.animate-fadeIn {
+				animation: fadeIn 1s ease-out forwards;
+			}
+			.animate-float {
+				animation: float 3s ease-in-out infinite;
+			}
+			.animate-gradient-pan {
+				background-size: 200% 200%;
+				animation: gradient-pan 5s ease infinite;
+			}
+			.animate-slideInLeft {
+				animation: slideInLeft 0.8s ease-out forwards;
+			}
+			.animate-slideInRight {
+				animation: slideInRight 0.8s ease-out forwards;
+			}
+			.animate-bounce-in {
+				animation: bounce-in 0.8s ease-out forwards;
+			}
 
-        <!-- =====BOX ICONS===== -->
-        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+			/* Code Animation */
+			.typing-animation {
+				border-right: 2px solid #10b981;
+				white-space: nowrap;
+				overflow: hidden;
+				animation: code-typing 4s steps(40, end) infinite,
+					cursor-blink 1s step-end infinite;
+			}
 
-        <title>Rifat's Protfolio</title>
-        <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/423/423092.png" type="image/x-icon">         
-    </head>
-    <body>
-        <!--===== HEADER =====-->
-        <header class="l-header">
-            <nav class="nav bd-grid">
-                <div>
-                    <a href="mdrifat05.github.io" class="nav__logo">Portfolio</a>
-                </div>
+			/* Glassmorphism effect */
+			.glass {
+				background: rgba(255, 255, 255, 0.1);
+				backdrop-filter: blur(10px);
+				border: 1px solid rgba(255, 255, 255, 0.2);
+			}
+			.dark .glass {
+				background: rgba(15, 23, 42, 0.1);
+				backdrop-filter: blur(10px);
+				border: 1px solid rgba(71, 85, 105, 0.2);
+			}
 
-                <div class="nav__menu" id="nav-menu">
-                    <ul class="nav__list">
-                        <li class="nav__item"><a href="#home" class="nav__link active">Home</a></li>
-                        <li class="nav__item"><a href="#about" class="nav__link">About</a></li>
-                        <li class="nav__item"><a href="#skills" class="nav__link">Skills</a></li>
-                        <li class="nav__item"><a href="#work" class="nav__link">Projects</a></li>
-                        <li class="nav__item"><a href="#contact" class="nav__link">Contact</a></li>
-                    </ul>
-                </div>
+			/* Enhanced hover effects */
+			.hover-lift {
+				transition: all 0.3s ease;
+			}
+			.hover-lift:hover {
+				transform: translateY(-8px);
+				box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+			}
+			.dark .hover-lift:hover {
+				box-shadow: 0 25px 50px -12px rgba(99, 102, 241, 0.3);
+			}
 
-                <div class="nav__toggle" id="nav-toggle">
-                    <i class='bx bx-menu'></i>
-                </div>
-            </nav>
-        </header>
+			/* Scrollbar Styling */
+			::-webkit-scrollbar {
+				width: 8px;
+			}
+			::-webkit-scrollbar-track {
+				background: #0f172a; /* slate-900 */
+			}
+			::-webkit-scrollbar-thumb {
+				background-color: #4f46e5; /* indigo-600 */
+				border-radius: 10px;
+				border: 2px solid #0f172a;
+			}
+			::-webkit-scrollbar-thumb:hover {
+				background-color: #6366f1; /* indigo-500 */
+			}
 
-        <main class="l-main">
-            <!--===== HOME =====-->
-            <section class="home bd-grid" id="home">
-                <div class="home__data">
-                    <h1 class="home__title">Hi, I'm <span class="home__title-color">Rifat!</span><br>A Computer Science <br>Student</h1>
+			/* Light theme scrollbar */
+			.light ::-webkit-scrollbar-track {
+				background: #f1f5f9; /* slate-100 */
+			}
+			.light ::-webkit-scrollbar-thumb {
+				background-color: #4f46e5; /* indigo-600 */
+				border: 2px solid #f1f5f9;
+			}
 
-                    <a href="#contact" class="button">Contact</a>
-                </div>
+			/* Theme transition */
+			* {
+				transition: background-color 0.3s ease, color 0.3s ease,
+					border-color 0.3s ease;
+			}
 
-                <div class="home__social">
-                    <a href="https://www.linkedin.com/in/rifatcs" class="home__social-icon"><i class='bx bxl-linkedin'></i></a>
-                    <a href="https://www.youtube.com/@md.rifatcs" class="home__social-icon"><i class='bx bxl-youtube' ></i></a>
-                    <a href="https://github.com/mdrifat05" class="home__social-icon"><i class='bx bxl-github' ></i></a>
-                </div>
+			/* Skill icons animation */
+			.skill-icon {
+				transition: all 0.3s ease;
+			}
+			.skill-icon:hover {
+				transform: rotate(360deg) scale(1.2);
+			}
 
-                <div class="home__img">
-                    <svg class="home__blob" viewBox="0 0 479 467" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                        <mask id="mask0" mask-type="alpha">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                        </mask>
-                        <g mask="url(#mask0)">
-                            <path d="M9.19024 145.964C34.0253 76.5814 114.865 54.7299 184.111 29.4823C245.804 6.98884 311.86 -14.9503 370.735 14.143C431.207 44.026 467.948 107.508 477.191 174.311C485.897 237.229 454.931 294.377 416.506 344.954C373.74 401.245 326.068 462.801 255.442 466.189C179.416 469.835 111.552 422.137 65.1576 361.805C17.4835 299.81 -17.1617 219.583 9.19024 145.964Z"/>
-                            <image class="home__blob-img" x="50" y="60" href="assets/img/Rifat.PNG"/>
-                        </g>
-                    </svg>
-                </div>
-            </section>
+			/* Shine border animation for skill cards */
+			.skill-card {
+				position: relative;
+				overflow: hidden;
+				transition: all 0.3s ease;
+			}
 
-            <!--===== ABOUT =====-->
-            <section class="about section " id="about">
-                <h2 class="section-title">ABOUT</h2>
-                <div class="about__container bd-grid">
-                    <div class="about__img">
-                        <img src="assets/img/about.jpg" alt="">
-                    </div>
-                    <div>
-                        <!-- <h2 class="about__subtitle">I'm Rifat</h2> -->
-                        <p align="justify" class="about__text">Greetings, I am Md. Rifat Hossen, a dedicated undergraduate in the field of software engineering, 
-                            pursued my studies at the prestigious American International University-Bangladesh (AIUB). I possess extensive programming 
-                            skills in various languages, such as C/C++, and C#. Also have sense experience in Java, PHP, Python, JS, and Shell Script, 
-                            and have hands-on experience with frameworks such as ASP .NET Framework/Core and .NET Windows Form. Additionally, I have honed 
-                            my proficiency in tools such as Git, GitHub, JIRA, and Figma. My academic performance during my undergraduate studies was 
-                            exceptional and earned me an academic scholarship. As a software engineer, my interests revolve around web development 
-                            using ASP .NET and excelling in competitive problem-solving. I am also passionate about exploring the vast possibilities of 
-                            artificial intelligence (AI), as is evident from my ongoing thesis project, which employs deep learning techniques to classify 
-                            skin diseases.</p>           
-                    </div>                                   
-                </div>
-            </section>
+			.skill-card::before {
+				content: "";
+				position: absolute;
+				top: -2px;
+				left: -2px;
+				right: -2px;
+				bottom: -2px;
+				background: linear-gradient(
+					45deg,
+					transparent,
+					rgba(99, 102, 241, 0.8),
+					transparent
+				);
+				z-index: -1;
+				border-radius: inherit;
+				opacity: 0;
+				transition: opacity 0.3s ease;
+				animation: shine 2s linear infinite;
+				animation-play-state: paused;
+			}
 
-            <!--===== SKILLS =====-->
-            <section class="skills section" id="skills">
-                <h2 class="section-title">SKILLS</h2>
+			.skill-card:hover::before {
+				opacity: 1;
+				animation-play-state: running;
+			}
 
-                <div class="skills__container bd-grid">          
+			@keyframes shine {
+				0% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(99, 102, 241, 0.8),
+						transparent
+					);
+					transform: translateX(-100%) translateY(-100%);
+				}
+				50% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(168, 85, 247, 0.8),
+						transparent
+					);
+					transform: translateX(0%) translateY(0%);
+				}
+				100% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(99, 102, 241, 0.8),
+						transparent
+					);
+					transform: translateX(100%) translateY(100%);
+				}
+			}
 
-                    <h3 align="left">Languages and Tools:</h3>
-                    <br>
-                    <table align="center">
-                        <tr>
-                          <td> <a href="https://www.cprogramming.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/c/c-original.svg" alt="c" width="40" height="40"/> </a> </td>
-                          <td><a href="https://www.w3schools.com/cpp/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/cplusplus/cplusplus-original.svg" alt="cplusplus" width="40" height="40"/> </a> </td>
-                          <td><a href="https://www.w3schools.com/cs/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="40" height="40"/> </a> </td>
-                          <td><a href="https://dotnet.microsoft.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original-wordmark.svg" alt="dotnet" width="40" height="40"/> </a> </td>
-                          <td><a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> </td>
-                          <td><a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> </td>
-                          <td><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" alt="javascript" width="40" height="40"/> </a> </td>
-                          <td><a href="https://www.linux.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/linux/linux-original.svg" alt="linux" width="40" height="40"/> </a> </td>
-                          <td><a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a> </td>
-                          <td><a href="https://www.php.net" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/php/php-original.svg" alt="php" width="40" height="40"/> </a> </td>
-                          <td><a href="https://postman.com" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg" alt="postman" width="40" height="40"/> </a> </td>
-                          <td> <a href="https://www.python.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" alt="python" width="40" height="40"/> </a> </p></td>
-                        </tr>
-                      </table>
-                   
-                    <!-- <div>              
-                        <img src="assets/img/work3.jpg" alt="" class="skills__img">
-                    </div> -->
-                </div>
-            </section>
+			/* Different colors for different skill categories */
+			.skill-card.languages:hover::before {
+				animation-name: shine-blue;
+			}
+			.skill-card.frameworks:hover::before {
+				animation-name: shine-purple;
+			}
+			.skill-card.tools:hover::before {
+				animation-name: shine-cyan;
+			}
+			.skill-card.concepts:hover::before {
+				animation-name: shine-green;
+			}
 
-            <!--===== WORK =====-->
-            <section class="work section" id="work">
-                <h2 class="section-title">PROJECTS</h2>
+			@keyframes shine-blue {
+				0% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(59, 130, 246, 0.8),
+						transparent
+					);
+				}
+				50% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(99, 102, 241, 0.8),
+						transparent
+					);
+				}
+				100% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(59, 130, 246, 0.8),
+						transparent
+					);
+				}
+			}
 
-                <div class="work__container bd-grid">
-                    <a href="https://github.com/mdrifat05/Take-A-Trip_Travel-Agency" class="work__img">
-                        <img src="assets/img/Csharp.PNG" alt="">
-                    </a>
-                    <a href="https://github.com/mdrifat05/Shunno-Online-Shopping" class="work__img">
-                        <img src="assets/img/Cpp.PNG" alt="">
-                    </a>
-                    <a href="https://github.com/mdrifat05/Online_Laundry_Service" class="work__img">
-                        <img src="assets/img/PHP.png" alt="">
-                    </a>
-                    <a href="https://github.com/mdrifat05/ASP-.NET-Mid-Project-" class="work__img">
-                        <img src="assets/img/ZeroHunger.PNG" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work5.jpg" alt="">
-                    </a>
-                    <a href="" class="work__img">
-                        <img src="assets/img/work6.jpg" alt="">
-                    </a>
-                </div>
-            </section>
+			@keyframes shine-purple {
+				0% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(168, 85, 247, 0.8),
+						transparent
+					);
+				}
+				50% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(236, 72, 153, 0.8),
+						transparent
+					);
+				}
+				100% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(168, 85, 247, 0.8),
+						transparent
+					);
+				}
+			}
 
-            <!--===== CONTACT =====-->
-            <section class="contact section" id="contact">
-                <h2 class="section-title">CONTACT</h2>
+			@keyframes shine-cyan {
+				0% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(6, 182, 212, 0.8),
+						transparent
+					);
+				}
+				50% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(59, 130, 246, 0.8),
+						transparent
+					);
+				}
+				100% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(6, 182, 212, 0.8),
+						transparent
+					);
+				}
+			}
 
-                <div class="contact__container bd-grid">
-                    <form action="" class="contact__form">
-                        <input type="text" placeholder="Name" class="contact__input">
-                        <input type="mail" placeholder="Email" class="contact__input">
-                        <textarea name="" id="" cols="0" rows="10" class="contact__input"></textarea>
-                        <input type="button" value="Submit" class="contact__button button">
-                    </form>
-                </div>
-            </section>
-        </main>
+			@keyframes shine-green {
+				0% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(34, 197, 94, 0.8),
+						transparent
+					);
+				}
+				50% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(16, 185, 129, 0.8),
+						transparent
+					);
+				}
+				100% {
+					background: linear-gradient(
+						45deg,
+						transparent,
+						rgba(34, 197, 94, 0.8),
+						transparent
+					);
+				}
+			}
+		</style>
+		<script>
+			// Theme switcher functionality
+			function initTheme() {
+				const theme = localStorage.getItem("theme") || "dark";
+				document.documentElement.classList.toggle("dark", theme === "dark");
+				document.documentElement.classList.toggle("light", theme === "light");
+			}
 
-        <!--===== FOOTER =====-->
-        <footer class="footer">
-            <p class="footer__title">Md. Rifat Hossen</p>
-            <div class="footer__social">
-                <a href="#" class="footer__icon"><i class='bx bxl-facebook' ></i></a>
-                <a href="#" class="footer__icon"><i class='bx bxl-instagram' ></i></a>
-                <a href="#" class="footer__icon"><i class='bx bxl-twitter' ></i></a>
-            </div>
-<!--             <p class="footer__copy">&#169; Rifat. All rigths reserved</p> -->
-            <p class="footer__copy">Copyright &#169; 2023 Rifat. All rights reserved</p>
-        </footer>
+			function toggleTheme() {
+				const isDark = document.documentElement.classList.contains("dark");
+				const newTheme = isDark ? "light" : "dark";
 
+				document.documentElement.classList.toggle("dark", newTheme === "dark");
+				document.documentElement.classList.toggle(
+					"light",
+					newTheme === "light"
+				);
 
-        <!--===== SCROLL REVEAL =====-->
-        <script src="https://unpkg.com/scrollreveal"></script>
+				localStorage.setItem("theme", newTheme);
+			}
 
-        <!--===== MAIN JS =====-->
-        <script src="assets/js/main.js"></script>
-    </body>
+			// Initialize theme on page load
+			document.addEventListener("DOMContentLoaded", initTheme);
+
+			// Intersection Observer for animations
+			document.addEventListener("DOMContentLoaded", function () {
+				const observerOptions = {
+					threshold: 0.1,
+					rootMargin: "0px 0px -50px 0px",
+				};
+
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add("animate-fadeIn");
+						}
+					});
+				}, observerOptions);
+
+				// Observe elements for animation
+				document.querySelectorAll("section").forEach((section) => {
+					observer.observe(section);
+				});
+
+				// Typing animation for code
+				const codeElement = document.querySelector(".typing-animation");
+				if (codeElement) {
+					setTimeout(() => {
+						codeElement.style.width = "100%";
+					}, 2000);
+				}
+
+				// Skill hover effects
+				document.querySelectorAll(".skill-icon").forEach((icon) => {
+					icon.addEventListener("mouseenter", () => {
+						icon.style.transform = "rotate(360deg) scale(1.2)";
+					});
+					icon.addEventListener("mouseleave", () => {
+						icon.style.transform = "rotate(0deg) scale(1)";
+					});
+				});
+			});
+		</script>
+	</head>
+	<body
+		class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-300 font-sans leading-relaxed"
+	>
+		<!-- Service: API Gateway (Navigation) -->
+		<header
+			class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 shadow-lg"
+		>
+			<nav
+				class="container mx-auto px-6 py-4 flex justify-between items-center"
+			>
+				<a
+					href="#"
+					class="flex items-center hover:scale-110 transition-transform duration-300"
+				>
+					<img
+						src="https://avatars.githubusercontent.com/u/97046016?v=4"
+						alt="Md Rifat Hossen"
+						class="w-12 h-12 rounded-full border-2 border-indigo-400 shadow-lg"
+					/>
+				</a>
+				<div class="flex items-center space-x-6">
+					<ul class="hidden md:flex space-x-8 text-lg">
+						<li>
+							<a
+								href="#experience"
+								class="hover:text-indigo-400 transition-all duration-300 text-slate-700 dark:text-slate-300 relative group"
+								>Experience
+								<span
+									class="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"
+								></span>
+							</a>
+						</li>
+						<li>
+							<a
+								href="#projects"
+								class="hover:text-indigo-400 transition-all duration-300 text-slate-700 dark:text-slate-300 relative group"
+								>Projects
+								<span
+									class="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"
+								></span>
+							</a>
+						</li>
+						<li>
+							<a
+								href="#skills"
+								class="hover:text-indigo-400 transition-all duration-300 text-slate-700 dark:text-slate-300 relative group"
+								>Skills
+								<span
+									class="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"
+								></span>
+							</a>
+						</li>
+						<li>
+							<a
+								href="#testimonials"
+								class="hover:text-indigo-400 transition-all duration-300 text-slate-700 dark:text-slate-300 relative group"
+								>Testimonials
+								<span
+									class="absolute bottom-0 left-0 w-0 h-0.5 bg-indigo-400 transition-all duration-300 group-hover:w-full"
+								></span>
+							</a>
+						</li>
+					</ul>
+					<!-- Theme Toggle Button -->
+					<button
+						onclick="toggleTheme()"
+						class="p-3 rounded-full bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-indigo-500/50"
+						title="Toggle theme"
+					>
+						<svg
+							class="w-5 h-5 dark:block hidden"
+							fill="currentColor"
+							viewBox="0 0 20 20"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+								clip-rule="evenodd"
+							></path>
+						</svg>
+						<svg
+							class="w-5 h-5 dark:hidden block"
+							fill="currentColor"
+							viewBox="0 0 20 20"
+						>
+							<path
+								d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+							></path>
+						</svg>
+					</button>
+					<!-- Contact CTA Button -->
+					<a
+						href="#contact"
+						class="bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-600 hover:to-purple-700 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-indigo-500/50"
+					>
+						<i class="fas fa-envelope mr-2"></i>Contact
+					</a>
+				</div>
+			</nav>
+		</header>
+
+		<main class="container mx-auto px-6 py-12">
+			<!-- Service: Identity & Profile (Hero Section) -->
+			<section
+				id="profile"
+				class="relative min-h-screen flex flex-col justify-center items-center animate-fadeIn overflow-hidden"
+			>
+				<!-- Background Animation -->
+				<div class="absolute inset-0 -z-10">
+					<div
+						class="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-bounce-slow"
+					></div>
+					<div
+						class="absolute top-40 right-10 w-72 h-72 bg-yellow-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-bounce-slow animation-delay-2000"
+					></div>
+					<div
+						class="absolute bottom-20 left-20 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-bounce-slow animation-delay-4000"
+					></div>
+				</div>
+
+				<div class="text-center z-10">
+					<div class="animate-float mb-8 mt-8">
+						<img
+							src="https://avatars.githubusercontent.com/u/97046016?v=4"
+							alt="Md Rifat Hossen"
+							class="w-48 h-48 rounded-full mx-auto border-4 border-gradient-to-r from-indigo-500 to-purple-600 shadow-2xl shadow-indigo-500/50 hover:scale-110 transition-transform duration-500"
+						/>
+					</div>
+
+					<h1 class="text-6xl md:text-8xl font-extrabold mb-6">
+						<span
+							class="bg-gradient-to-r from-indigo-400 via-purple-500 to-indigo-500 bg-clip-text text-transparent animate-gradient-pan"
+						>
+							Md Rifat Hossen
+						</span>
+					</h1>
+
+					<div
+						class="text-2xl md:text-4xl text-slate-600 dark:text-slate-400 mb-8 font-semibold"
+					>
+						<span class="inline-flex items-center">
+							<i class="fas fa-code text-indigo-500 mr-3 animate-pulse"></i>
+							Software Engineer
+						</span>
+						<span class="mx-4 text-indigo-400">|</span>
+						<span class="inline-flex items-center">
+							<i class="fas fa-cloud text-purple-500 mr-3 animate-pulse"></i>
+							Cloud Architect
+						</span>
+					</div>
+
+					<!-- Coding Animation -->
+					<div
+						class="bg-slate-900 dark:bg-slate-800 rounded-lg p-6 mb-8 max-w-2xl mx-auto border border-slate-700 shadow-2xl"
+					>
+						<div class="flex items-center mb-4">
+							<div class="flex space-x-2">
+								<div class="w-3 h-3 bg-red-500 rounded-full"></div>
+								<div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+								<div class="w-3 h-3 bg-green-500 rounded-full"></div>
+							</div>
+							<span class="ml-4 text-sm text-slate-400">RifatCode.cs</span>
+						</div>
+						<div class="text-left font-mono text-sm">
+							<div class="text-purple-400">
+								public class
+								<span class="text-yellow-300">SoftwareEngineer</span>
+							</div>
+							<div class="text-slate-400">{</div>
+							<div class="ml-4 text-blue-400">
+								public string <span class="text-white">Name</span>
+								<span class="text-slate-400">=</span>
+								<span class="text-green-400">"Md Rifat Hossen"</span
+								><span class="text-slate-400">;</span>
+							</div>
+							<div class="ml-4 text-blue-400">
+								public string[] <span class="text-white">Skills</span>
+								<span class="text-slate-400">=</span>
+								<span class="text-slate-400">{</span>
+								<span class="text-green-400">"C#", ".NET", "Azure"</span>
+								<span class="text-slate-400">};</span>
+							</div>
+							<div class="ml-4 typing-animation text-cyan-400">
+								public void Code() => Build(Innovation);
+							</div>
+							<div class="text-slate-400">}</div>
+						</div>
+					</div>
+
+					<!-- Enhanced Stats -->
+					<div
+						class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 max-w-4xl mx-auto"
+					>
+						<div
+							class="bg-white/10 dark:bg-slate-800/50 backdrop-blur-lg rounded-xl p-4 border border-white/20 dark:border-slate-700 hover-lift"
+						>
+							<div class="text-3xl font-bold text-indigo-400 mb-2">2+</div>
+							<div class="text-sm text-slate-600 dark:text-slate-400">
+								Years Experience
+							</div>
+						</div>
+						<div
+							class="bg-white/10 dark:bg-slate-800/50 backdrop-blur-lg rounded-xl p-4 border border-white/20 dark:border-slate-700 hover-lift"
+						>
+							<div class="text-3xl font-bold text-purple-400 mb-2">15+</div>
+							<div class="text-sm text-slate-600 dark:text-slate-400">
+								Projects Delivered
+							</div>
+						</div>
+						<div
+							class="bg-white/10 dark:bg-slate-800/50 backdrop-blur-lg rounded-xl p-4 border border-white/20 dark:border-slate-700 hover-lift"
+						>
+							<div class="text-3xl font-bold text-green-400 mb-2">80%</div>
+							<div class="text-sm text-slate-600 dark:text-slate-400">
+								Test Coverage
+							</div>
+						</div>
+						<div
+							class="bg-white/10 dark:bg-slate-800/50 backdrop-blur-lg rounded-xl p-4 border border-white/20 dark:border-slate-700 hover-lift"
+						>
+							<div class="text-3xl font-bold text-yellow-400 mb-2">3.88</div>
+							<div class="text-sm text-slate-600 dark:text-slate-400">CGPA</div>
+						</div>
+					</div>
+
+					<!-- Key Highlights -->
+					<div class="max-w-4xl mx-auto mb-8">
+						<div class="grid md:grid-cols-3 gap-6">
+							<div class="glass rounded-xl p-6 hover-lift">
+								<i class="fas fa-rocket text-4xl text-indigo-400 mb-4"></i>
+								<h3
+									class="text-xl font-bold text-slate-800 dark:text-white mb-2"
+								>
+									Performance Optimizer
+								</h3>
+								<p class="text-slate-600 dark:text-slate-400">
+									Reduced API response times by 60% and data transfer by 70%
+								</p>
+							</div>
+							<div class="glass rounded-xl p-6 hover-lift">
+								<i class="fas fa-cogs text-4xl text-purple-400 mb-4"></i>
+								<h3
+									class="text-xl font-bold text-slate-800 dark:text-white mb-2"
+								>
+									Architecture Expert
+								</h3>
+								<p class="text-slate-600 dark:text-slate-400">
+									Specialized in Clean Architecture, DDD, and CQRS patterns
+								</p>
+							</div>
+							<div class="glass rounded-xl p-6 hover-lift">
+								<i
+									class="fas fa-graduation-cap text-4xl text-green-400 mb-4"
+								></i>
+								<h3
+									class="text-xl font-bold text-slate-800 dark:text-white mb-2"
+								>
+									Magna Cum Laude
+								</h3>
+								<p class="text-slate-600 dark:text-slate-400">
+									CSE Graduate with honors from AIUB
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="flex justify-center space-x-6">
+						<a
+							href="https://github.com/mdrifat05"
+							target="_blank"
+							class="group bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-gray-500/50 flex items-center"
+						>
+							<i
+								class="fab fa-github text-2xl mr-3 group-hover:rotate-12 transition-transform"
+							></i>
+							GitHub
+						</a>
+						<a
+							href="https://linkedin.com/in/rifatcs"
+							target="_blank"
+							class="group bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-blue-500/50 flex items-center"
+						>
+							<i
+								class="fab fa-linkedin text-2xl mr-3 group-hover:rotate-12 transition-transform"
+							></i>
+							LinkedIn
+						</a>
+					</div>
+				</div>
+			</section>
+
+			<!-- Service: Experience Timeline -->
+			<section id="experience" class="py-20">
+				<h2 class="text-5xl font-bold text-center mb-20 relative">
+					<span
+						class="bg-gradient-to-r from-slate-500 to-indigo-400 bg-clip-text text-transparent"
+						>Career Journey</span
+					>
+					<span
+						class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full"
+					></span>
+				</h2>
+
+				<div class="max-w-6xl mx-auto">
+					<!-- HawarIT Limited -->
+					<div class="relative mb-16">
+						<div class="flex flex-col lg:flex-row items-center gap-8">
+							<div class="lg:w-1/2 animate-slideInLeft">
+								<div
+									class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-8 shadow-2xl hover-lift border border-indigo-300 dark:border-indigo-700"
+								>
+									<div class="flex items-center mb-6">
+										<div class="bg-white/20 rounded-full p-3 mr-4">
+											<i class="fas fa-briefcase text-2xl text-white"></i>
+										</div>
+										<div>
+											<h3 class="text-2xl font-bold text-white">
+												Software Engineer
+											</h3>
+											<p class="text-indigo-100 text-lg">HawarIT Limited</p>
+											<p class="text-indigo-200 text-sm">May 2024 – Present</p>
+										</div>
+									</div>
+
+									<div class="grid md:grid-cols-2 gap-4 mb-6">
+										<div class="bg-white/10 rounded-lg p-4">
+											<i class="fas fa-globe text-white text-xl mb-2"></i>
+											<p class="text-white text-sm">EU Client Solutions</p>
+										</div>
+										<div class="bg-white/10 rounded-lg p-4">
+											<i class="fas fa-sync-alt text-white text-xl mb-2"></i>
+											<p class="text-white text-sm">Agile Methodology</p>
+										</div>
+									</div>
+
+									<h4 class="text-lg font-semibold text-white mb-3">
+										Key Achievements:
+									</h4>
+									<ul class="space-y-3 text-indigo-100">
+										<li class="flex items-start">
+											<i
+												class="fas fa-check-circle text-green-300 mt-1 mr-3 flex-shrink-0"
+											></i>
+											<span
+												>Delivered high-quality .NET Core solutions for European
+												clients using Agile methodologies</span
+											>
+										</li>
+										<li class="flex items-start">
+											<i
+												class="fas fa-rocket text-yellow-300 mt-1 mr-3 flex-shrink-0"
+											></i>
+											<span
+												>Built comprehensive CI/CD pipelines with Azure,
+												reducing production errors by 40%</span
+											>
+										</li>
+										<li class="flex items-start">
+											<i
+												class="fas fa-shield-alt text-blue-300 mt-1 mr-3 flex-shrink-0"
+											></i>
+											<span
+												>Enforced coding standards and best practices,
+												increasing unit test coverage to 80%</span
+											>
+										</li>
+									</ul>
+
+									<div class="mt-6 flex flex-wrap gap-2">
+										<span
+											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
+											>.NET Core</span
+										>
+										<span
+											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
+											>Azure</span
+										>
+										<span
+											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
+											>CI/CD</span
+										>
+										<span
+											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
+											>Agile</span
+										>
+									</div>
+								</div>
+							</div>
+
+							<div class="lg:w-1/2 flex justify-center">
+								<div
+									class="w-64 h-64 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 rounded-full flex items-center justify-center animate-bounce-in"
+								>
+									<i
+										class="fas fa-laptop-code text-6xl text-indigo-600 dark:text-indigo-400"
+									></i>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Timeline connector -->
+					<div class="flex justify-center mb-16">
+						<div
+							class="w-1 h-16 bg-gradient-to-b from-indigo-500 to-purple-600 rounded-full"
+						></div>
+					</div>
+
+					<!-- Bdjobs.com Limited -->
+					<div class="relative mb-16">
+						<div class="flex flex-col lg:flex-row-reverse items-center gap-8">
+							<div class="lg:w-1/2 animate-slideInRight">
+								<div
+									class="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-8 shadow-2xl hover-lift border border-purple-300 dark:border-purple-700"
+								>
+									<div class="flex items-center mb-6">
+										<div class="bg-white/20 rounded-full p-3 mr-4">
+											<i class="fas fa-code text-2xl text-white"></i>
+										</div>
+										<div>
+											<h3 class="text-2xl font-bold text-white">
+												Junior Software Engineer
+											</h3>
+											<p class="text-purple-100 text-lg">Bdjobs.com Limited</p>
+											<p class="text-purple-200 text-sm">May 2023 – Apr 2024</p>
+										</div>
+									</div>
+
+									<div class="grid md:grid-cols-2 gap-4 mb-6">
+										<div class="bg-white/10 rounded-lg p-4">
+											<i class="fas fa-database text-white text-xl mb-2"></i>
+											<p class="text-white text-sm">Legacy Migration</p>
+										</div>
+										<div class="bg-white/10 rounded-lg p-4">
+											<i class="fas fa-robot text-white text-xl mb-2"></i>
+											<p class="text-white text-sm">AI Integration</p>
+										</div>
+									</div>
+
+									<h4 class="text-lg font-semibold text-white mb-3">
+										Key Achievements:
+									</h4>
+									<ul class="space-y-3 text-purple-100">
+										<li class="flex items-start">
+											<i
+												class="fas fa-arrow-up text-green-300 mt-1 mr-3 flex-shrink-0"
+											></i>
+											<span
+												>Migrated legacy system to .NET Core, cutting data
+												transfer time by 70%</span
+											>
+										</li>
+										<li class="flex items-start">
+											<i
+												class="fas fa-tachometer-alt text-yellow-300 mt-1 mr-3 flex-shrink-0"
+											></i>
+											<span
+												>Reduced API response time by 60% by adopting MongoDB
+												optimization strategies</span
+											>
+										</li>
+										<li class="flex items-start">
+											<i
+												class="fas fa-brain text-blue-300 mt-1 mr-3 flex-shrink-0"
+											></i>
+											<span
+												>Developed scalable API integrating ChatGPT for
+												AI-powered career counseling</span
+											>
+										</li>
+									</ul>
+
+									<div class="mt-6 flex flex-wrap gap-2">
+										<span
+											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
+											>.NET Core</span
+										>
+										<span
+											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
+											>MongoDB</span
+										>
+										<span
+											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
+											>ChatGPT API</span
+										>
+										<span
+											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
+											>Performance</span
+										>
+									</div>
+								</div>
+							</div>
+
+							<div class="lg:w-1/2 flex justify-center">
+								<div
+									class="w-64 h-64 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 rounded-full flex items-center justify-center animate-bounce-in"
+								>
+									<i
+										class="fas fa-chart-line text-6xl text-purple-600 dark:text-purple-400"
+									></i>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Service: Project Catalog -->
+			<section id="projects" class="py-20">
+				<h2 class="text-5xl font-bold text-center mb-20 relative">
+					<span
+						class="bg-gradient-to-r from-slate-500 to-indigo-400 bg-clip-text text-transparent"
+						>Featured Projects</span
+					>
+					<span
+						class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full"
+					></span>
+				</h2>
+				<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+					<!-- Project Card 1 -->
+					<div
+						class="group bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-indigo-500/40 transition-all duration-500 transform hover:-translate-y-4 border border-slate-200 dark:border-slate-700 hover-lift"
+					>
+						<div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-6">
+							<div class="flex items-center justify-between mb-4">
+								<i class="fas fa-hotel text-3xl text-white"></i>
+								<div class="bg-white/20 px-3 py-1 rounded-full">
+									<span class="text-white text-sm font-semibold"
+										>Enterprise</span
+									>
+								</div>
+							</div>
+							<h3 class="text-2xl font-bold text-white mb-2">Bookify</h3>
+							<p class="text-indigo-100">Hotel Booking System</p>
+						</div>
+						<div class="p-6">
+							<p
+								class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed"
+							>
+								Engineered a comprehensive hotel booking system using Clean
+								Architecture and Domain-Driven Design principles.
+							</p>
+
+							<div class="space-y-3 mb-6">
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>Clean Architecture implementation</span>
+								</div>
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>CQRS with MediatR pattern</span>
+								</div>
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>Docker containerization</span>
+								</div>
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>Advanced booking algorithms</span>
+								</div>
+							</div>
+
+							<div class="flex flex-wrap gap-2 mb-6">
+								<span
+									class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-800"
+									>.NET Core</span
+								>
+								<span
+									class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-800"
+									>DDD</span
+								>
+								<span
+									class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-800"
+									>CQRS</span
+								>
+								<span
+									class="bg-indigo-100 dark:bg-indigo-900/50 text-indigo-800 dark:text-indigo-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-indigo-200 dark:group-hover:bg-indigo-800"
+									>Docker</span
+								>
+							</div>
+
+							<div class="flex justify-between items-center">
+								<button
+									class="text-indigo-600 dark:text-indigo-400 font-semibold hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors flex items-center"
+								>
+									<i class="fab fa-github mr-2"></i>
+									View Code
+								</button>
+								<button
+									class="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors flex items-center"
+								>
+									<i class="fas fa-external-link-alt mr-2"></i>
+									Live Demo
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Project Card 2 -->
+					<div
+						class="group bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-purple-500/40 transition-all duration-500 transform hover:-translate-y-4 border border-slate-200 dark:border-slate-700 hover-lift"
+					>
+						<div class="bg-gradient-to-r from-purple-500 to-pink-600 p-6">
+							<div class="flex items-center justify-between mb-4">
+								<i class="fas fa-microchip text-3xl text-white"></i>
+								<div class="bg-white/20 px-3 py-1 rounded-full">
+									<span class="text-white text-sm font-semibold"
+										>Microservice</span
+									>
+								</div>
+							</div>
+							<h3 class="text-2xl font-bold text-white mb-2">
+								Catalog Service
+							</h3>
+							<p class="text-purple-100">Product Catalog Microservice</p>
+						</div>
+						<div class="p-6">
+							<p
+								class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed"
+							>
+								Built a modular product catalog system with event-driven
+								communication and advanced messaging patterns.
+							</p>
+
+							<div class="space-y-3 mb-6">
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>Event-driven architecture</span>
+								</div>
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>RabbitMQ message broker</span>
+								</div>
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>Repository pattern with EF Core</span>
+								</div>
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>Comprehensive unit testing</span>
+								</div>
+							</div>
+
+							<div class="flex flex-wrap gap-2 mb-6">
+								<span
+									class="bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-purple-200 dark:group-hover:bg-purple-800"
+									>.NET Core</span
+								>
+								<span
+									class="bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-purple-200 dark:group-hover:bg-purple-800"
+									>RabbitMQ</span
+								>
+								<span
+									class="bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-purple-200 dark:group-hover:bg-purple-800"
+									>Microservices</span
+								>
+								<span
+									class="bg-purple-100 dark:bg-purple-900/50 text-purple-800 dark:text-purple-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-purple-200 dark:group-hover:bg-purple-800"
+									>xUnit</span
+								>
+							</div>
+
+							<div class="flex justify-between items-center">
+								<button
+									class="text-purple-600 dark:text-purple-400 font-semibold hover:text-purple-700 dark:hover:text-purple-300 transition-colors flex items-center"
+								>
+									<i class="fab fa-github mr-2"></i>
+									View Code
+								</button>
+								<button
+									class="text-pink-600 dark:text-pink-400 font-semibold hover:text-pink-700 dark:hover:text-pink-300 transition-colors flex items-center"
+								>
+									<i class="fas fa-external-link-alt mr-2"></i>
+									Architecture
+								</button>
+							</div>
+						</div>
+					</div>
+
+					<!-- Project Card 3 -->
+					<div
+						class="group bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl hover:shadow-blue-500/40 transition-all duration-500 transform hover:-translate-y-4 border border-slate-200 dark:border-slate-700 hover-lift"
+					>
+						<div class="bg-gradient-to-r from-blue-500 to-cyan-600 p-6">
+							<div class="flex items-center justify-between mb-4">
+								<i class="fas fa-cloud text-3xl text-white"></i>
+								<div class="bg-white/20 px-3 py-1 rounded-full">
+									<span class="text-white text-sm font-semibold">DevOps</span>
+								</div>
+							</div>
+							<h3 class="text-2xl font-bold text-white mb-2">CloudFlow</h3>
+							<p class="text-blue-100">CI/CD Pipeline Automation</p>
+						</div>
+						<div class="p-6">
+							<p
+								class="text-slate-600 dark:text-slate-400 mb-6 leading-relaxed"
+							>
+								A sophisticated CI/CD pipeline visualizer built with real-time
+								updates and Azure DevOps integration.
+							</p>
+
+							<div class="space-y-3 mb-6">
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>Real-time pipeline monitoring</span>
+								</div>
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>SignalR for live updates</span>
+								</div>
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>Azure DevOps integration</span>
+								</div>
+								<div
+									class="flex items-center text-sm text-slate-600 dark:text-slate-400"
+								>
+									<i class="fas fa-check-circle text-green-500 mr-3"></i>
+									<span>Angular frontend dashboard</span>
+								</div>
+							</div>
+
+							<div class="flex flex-wrap gap-2 mb-6">
+								<span
+									class="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-blue-200 dark:group-hover:bg-blue-800"
+									>Angular</span
+								>
+								<span
+									class="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-blue-200 dark:group-hover:bg-blue-800"
+									>SignalR</span
+								>
+								<span
+									class="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-blue-200 dark:group-hover:bg-blue-800"
+									>Azure DevOps</span
+								>
+								<span
+									class="bg-blue-100 dark:bg-blue-900/50 text-blue-800 dark:text-blue-300 text-sm font-medium px-3 py-1 rounded-full transition-colors duration-300 group-hover:bg-blue-200 dark:group-hover:bg-blue-800"
+									>WebSocket</span
+								>
+							</div>
+
+							<div class="flex justify-between items-center">
+								<button
+									class="text-blue-600 dark:text-blue-400 font-semibold hover:text-blue-700 dark:hover:text-blue-300 transition-colors flex items-center"
+								>
+									<i class="fab fa-github mr-2"></i>
+									View Code
+								</button>
+								<button
+									class="text-cyan-600 dark:text-cyan-400 font-semibold hover:text-cyan-700 dark:hover:text-cyan-300 transition-colors flex items-center"
+								>
+									<i class="fas fa-external-link-alt mr-2"></i>
+									Dashboard
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Service: Skills Registry -->
+			<section id="skills" class="py-20">
+				<h2 class="text-5xl font-bold text-center mb-20 relative">
+					<span
+						class="bg-gradient-to-r from-slate-500 to-indigo-400 bg-clip-text text-transparent"
+						>Technical Arsenal</span
+					>
+					<span
+						class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full"
+					></span>
+				</h2>
+
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+					<!-- Languages -->
+					<div class="group">
+						<div
+							class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-6 mb-6 text-center hover-lift"
+						>
+							<i class="fas fa-code text-4xl text-white mb-4 skill-icon"></i>
+							<h3 class="text-2xl font-bold text-white">Languages</h3>
+						</div>
+						<div class="space-y-3">
+							<div
+								class="skill-card languages bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fab fa-microsoft text-2xl text-blue-600 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>C#</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card languages bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fab fa-js-square text-2xl text-yellow-500 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>TypeScript</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card languages bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fab fa-python text-2xl text-green-600 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>Python</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card languages bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fas fa-database text-2xl text-orange-500 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>SQL</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Frameworks -->
+					<div class="group">
+						<div
+							class="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-6 mb-6 text-center hover-lift"
+						>
+							<i
+								class="fas fa-layer-group text-4xl text-white mb-4 skill-icon"
+							></i>
+							<h3 class="text-2xl font-bold text-white">Frameworks</h3>
+						</div>
+						<div class="space-y-3">
+							<div
+								class="skill-card frameworks bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fas fa-globe text-2xl text-purple-600 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>.NET Core</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card frameworks bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fas fa-database text-2xl text-blue-500 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>Entity Framework</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card frameworks bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fab fa-angular text-2xl text-red-600 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>Angular</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Tools & Technologies -->
+					<div class="group">
+						<div
+							class="bg-gradient-to-br from-blue-500 to-cyan-600 rounded-2xl p-6 mb-6 text-center hover-lift"
+						>
+							<i class="fas fa-tools text-4xl text-white mb-4 skill-icon"></i>
+							<h3 class="text-2xl font-bold text-white">Tools</h3>
+						</div>
+						<div class="space-y-3">
+							<div
+								class="skill-card tools bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fab fa-microsoft text-2xl text-blue-500 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>Azure</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card tools bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fab fa-docker text-2xl text-blue-400 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>Docker</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card tools bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fab fa-git-alt text-2xl text-orange-600 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>Git</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card tools bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fas fa-leaf text-2xl text-green-500 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>MongoDB</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- Concepts -->
+					<div class="group">
+						<div
+							class="bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl p-6 mb-6 text-center hover-lift"
+						>
+							<i class="fas fa-brain text-4xl text-white mb-4 skill-icon"></i>
+							<h3 class="text-2xl font-bold text-white">Concepts</h3>
+						</div>
+						<div class="space-y-3">
+							<div
+								class="skill-card concepts bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fas fa-sitemap text-2xl text-indigo-500 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>Microservices</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card concepts bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i
+										class="fas fa-exchange-alt text-2xl text-purple-500 mr-3"
+									></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>CQRS</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card concepts bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i class="fas fa-rocket text-2xl text-green-500 mr-3"></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>CI/CD</span
+									>
+								</div>
+							</div>
+							<div
+								class="skill-card concepts bg-white dark:bg-slate-800 rounded-xl p-4 shadow-lg hover-lift border border-slate-200 dark:border-slate-700"
+							>
+								<div class="flex items-center">
+									<i
+										class="fas fa-code-branch text-2xl text-yellow-500 mr-3"
+									></i>
+									<span class="font-semibold text-slate-800 dark:text-white"
+										>Clean Code</span
+									>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Additional Skills Showcase -->
+				<div class="mt-16">
+					<h3
+						class="text-3xl font-bold text-center mb-12 text-slate-800 dark:text-white"
+					>
+						Specialized Expertise
+					</h3>
+					<div class="grid md:grid-cols-3 gap-8">
+						<div class="text-center group">
+							<div
+								class="bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+							>
+								<i
+									class="fas fa-chart-line text-3xl text-indigo-600 dark:text-indigo-400"
+								></i>
+							</div>
+							<h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2">
+								Performance Optimization
+							</h4>
+							<p class="text-slate-600 dark:text-slate-400">
+								Expert in reducing response times and improving system
+								efficiency
+							</p>
+						</div>
+						<div class="text-center group">
+							<div
+								class="bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+							>
+								<i
+									class="fas fa-shield-alt text-3xl text-purple-600 dark:text-purple-400"
+								></i>
+							</div>
+							<h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2">
+								Security Best Practices
+							</h4>
+							<p class="text-slate-600 dark:text-slate-400">
+								Implementing secure coding practices and vulnerability
+								prevention
+							</p>
+						</div>
+						<div class="text-center group">
+							<div
+								class="bg-gradient-to-br from-green-100 to-emerald-100 dark:from-green-900 dark:to-emerald-900 rounded-full w-24 h-24 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300"
+							>
+								<i
+									class="fas fa-users text-3xl text-green-600 dark:text-green-400"
+								></i>
+							</div>
+							<h4 class="text-xl font-bold text-slate-800 dark:text-white mb-2">
+								Team Leadership
+							</h4>
+							<p class="text-slate-600 dark:text-slate-400">
+								Mentoring developers and leading technical discussions
+							</p>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<!-- Service: Testimonials -->
+			<section id="testimonials" class="py-20">
+				<h2 class="text-5xl font-bold text-center mb-20 relative">
+					<span
+						class="bg-gradient-to-r from-slate-500 to-indigo-400 bg-clip-text text-transparent"
+						>Team Lead Testimonials</span
+					>
+					<span
+						class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full"
+					></span>
+				</h2>
+				<div class="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+					<div
+						class="relative bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 p-8 rounded-2xl shadow-xl hover-lift border border-slate-200 dark:border-slate-700 overflow-hidden"
+					>
+						<!-- Quote Icon -->
+						<div class="absolute top-4 right-4 opacity-20">
+							<i class="fas fa-quote-right text-6xl text-indigo-500"></i>
+						</div>
+
+						<div class="relative z-10">
+							<div class="flex items-center mb-6">
+								<div
+									class="w-16 h-16 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full flex items-center justify-center mr-4"
+								>
+									<i class="fas fa-user text-white text-xl"></i>
+								</div>
+								<div>
+									<h4 class="font-bold text-xl text-slate-800 dark:text-white">
+										Md Shah Newaj Topu
+									</h4>
+									<p class="text-indigo-600 dark:text-indigo-400 font-semibold">
+										Senior Architect (Consultant)
+									</p>
+									<p class="text-sm text-slate-500">Bdjobs.com Ltd.</p>
+								</div>
+							</div>
+
+							<div class="mb-6">
+								<div class="flex mb-3">
+									<i class="fas fa-star text-yellow-400"></i>
+									<i class="fas fa-star text-yellow-400"></i>
+									<i class="fas fa-star text-yellow-400"></i>
+									<i class="fas fa-star text-yellow-400"></i>
+									<i class="fas fa-star text-yellow-400"></i>
+								</div>
+								<p
+									class="text-slate-600 dark:text-slate-400 italic leading-relaxed"
+								>
+									"Rifat's expertise in .NET Core and microservices was
+									instrumental in modernizing BDJobs's legacy systems. His
+									commitment to clean code and performance optimization is
+									outstanding."
+								</p>
+							</div>
+
+							<div class="grid grid-cols-2 gap-4 text-center">
+								<div class="bg-indigo-50 dark:bg-indigo-900/30 rounded-lg p-3">
+									<div
+										class="text-2xl font-bold text-indigo-600 dark:text-indigo-400"
+									>
+										70%
+									</div>
+									<div class="text-xs text-slate-600 dark:text-slate-400">
+										Performance Boost
+									</div>
+								</div>
+								<div class="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-3">
+									<div
+										class="text-2xl font-bold text-purple-600 dark:text-purple-400"
+									>
+										6 Mo
+									</div>
+									<div class="text-xs text-slate-600 dark:text-slate-400">
+										Project Duration
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div
+						class="relative bg-gradient-to-br from-white to-slate-50 dark:from-slate-800 dark:to-slate-900 p-8 rounded-2xl shadow-xl hover-lift border border-slate-200 dark:border-slate-700 overflow-hidden"
+					>
+						<!-- Quote Icon -->
+						<div class="absolute top-4 right-4 opacity-20">
+							<i class="fas fa-quote-right text-6xl text-purple-500"></i>
+						</div>
+
+						<div class="relative z-10">
+							<div class="flex items-center mb-6">
+								<div
+									class="w-16 h-16 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full flex items-center justify-center mr-4"
+								>
+									<i class="fas fa-user text-white text-xl"></i>
+								</div>
+								<div>
+									<h4 class="font-bold text-xl text-slate-800 dark:text-white">
+										Sirajis Salekin
+									</h4>
+									<p class="text-purple-600 dark:text-purple-400 font-semibold">
+										Team Lead, Rensa Team
+									</p>
+									<p class="text-sm text-slate-500">HawarIT Limited</p>
+								</div>
+							</div>
+
+							<div class="mb-6">
+								<div class="flex mb-3">
+									<i class="fas fa-star text-yellow-400"></i>
+									<i class="fas fa-star text-yellow-400"></i>
+									<i class="fas fa-star text-yellow-400"></i>
+									<i class="fas fa-star text-yellow-400"></i>
+									<i class="fas fa-star text-yellow-400"></i>
+								</div>
+								<p
+									class="text-slate-600 dark:text-slate-400 italic leading-relaxed"
+								>
+									"A proactive and brilliant engineer. Rifat's work on our CI/CD
+									pipelines has significantly improved our deployment frequency
+									and system stability."
+								</p>
+							</div>
+
+							<div class="grid grid-cols-2 gap-4 text-center">
+								<div class="bg-purple-50 dark:bg-purple-900/30 rounded-lg p-3">
+									<div
+										class="text-2xl font-bold text-purple-600 dark:text-purple-400"
+									>
+										40%
+									</div>
+									<div class="text-xs text-slate-600 dark:text-slate-400">
+										Error Reduction
+									</div>
+								</div>
+								<div class="bg-green-50 dark:bg-green-900/30 rounded-lg p-3">
+									<div
+										class="text-2xl font-bold text-green-600 dark:text-green-400"
+									>
+										80%
+									</div>
+									<div class="text-xs text-slate-600 dark:text-slate-400">
+										Test Coverage
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Additional Testimonials Carousel Indicators -->
+				<div class="flex justify-center mt-12 space-x-2">
+					<div class="w-3 h-3 bg-indigo-500 rounded-full"></div>
+					<div
+						class="w-3 h-3 bg-slate-300 dark:bg-slate-600 rounded-full"
+					></div>
+					<div
+						class="w-3 h-3 bg-slate-300 dark:bg-slate-600 rounded-full"
+					></div>
+				</div>
+			</section>
+
+			<!-- Service: Education & Life Updates -->
+			<section id="education" class="py-20">
+				<h2 class="text-4xl font-bold text-center mb-16 relative">
+					<span
+						class="bg-gradient-to-r from-slate-500 to-indigo-400 bg-clip-text text-transparent"
+						>Education & Updates</span
+					>
+					<span
+						class="absolute -bottom-2 left-1/2 -translate-x-1/2 w-32 h-1 bg-indigo-500 rounded-full"
+					></span>
+				</h2>
+				<div class="grid lg:grid-cols-5 gap-8">
+					<div
+						class="lg:col-span-3 bg-white dark:bg-slate-800 p-8 rounded-lg shadow-xl hover:shadow-indigo-500/40 transition-shadow duration-300 border border-slate-200 dark:border-slate-700"
+					>
+						<h3
+							class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-2"
+						>
+							BSc. in Computer Science & Engineering
+						</h3>
+						<p class="text-lg font-semibold text-slate-600 dark:text-slate-400">
+							American International University - Bangladesh (AIUB)
+						</p>
+						<p class="text-md text-slate-500 mb-4">
+							Jan 2020 – Jan 2024 | CGPA: 3.88
+						</p>
+						<div class="space-y-2">
+							<p class="flex items-center">
+								<span class="text-indigo-400 mr-2">🏆</span>
+								<strong>Degree Awarded:</strong> Magna Cum Laude
+							</p>
+							<p class="flex items-center">
+								<span class="text-indigo-400 mr-2">🏅</span>
+								<strong>Honors:</strong> Dean’s List for exceptional CGPA
+							</p>
+							<p class="flex items-center">
+								<span class="text-indigo-400 mr-2">💡</span>
+								<strong>Activities:</strong> Active member of the Computer Club
+							</p>
+						</div>
+					</div>
+					<div
+						class="lg:col-span-2 bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg border border-slate-200 dark:border-slate-700"
+					>
+						<h3
+							class="text-2xl font-bold text-indigo-600 dark:text-indigo-400 mb-4"
+						>
+							News & Life Updates
+						</h3>
+						<div class="space-y-4">
+							<div>
+								<p class="font-semibold text-slate-800 dark:text-white">
+									🚀 Started a new journey as a Software Engineer at HawarIT!
+								</p>
+								<p class="text-sm text-slate-500 dark:text-slate-400">
+									May 2024
+								</p>
+							</div>
+							<div>
+								<p class="font-semibold text-slate-800 dark:text-white">
+									🎓 Graduated with Magna Cum Laude honors from AIUB.
+								</p>
+								<p class="text-sm text-slate-500 dark:text-slate-400">
+									January 2024
+								</p>
+							</div>
+							<div>
+								<p class="font-semibold text-slate-800 dark:text-white">
+									☁️ Exploring advanced Azure serverless architectures.
+								</p>
+								<p class="text-sm text-slate-500 dark:text-slate-400">
+									Ongoing
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<!-- Service: Contact Point -->
+		<footer
+			id="contact"
+			class="bg-slate-100 dark:bg-slate-900 border-t-2 border-indigo-300 dark:border-indigo-900 py-10"
+		>
+			<div class="container mx-auto text-center">
+				<h2 class="text-3xl font-bold mb-4 text-slate-800 dark:text-slate-300">
+					Get In Touch
+				</h2>
+				<p class="text-lg text-slate-600 dark:text-slate-400 mb-4">
+					Feel free to reach out for collaborations or just a friendly chat!
+				</p>
+				<a
+					href="mailto:hossen.mdrifat20@gmail.com"
+					class="text-2xl text-indigo-400 hover:text-indigo-300 transition-colors duration-300 font-mono"
+				>
+					hossen.mdrifat20@gmail.com
+				</a>
+				<p class="text-lg text-slate-600 dark:text-slate-400 mt-4 font-mono">
+					01798648656
+				</p>
+				<div class="flex justify-center space-x-8 mt-6">
+					<a
+						href="https://github.com/mdrifat05"
+						target="_blank"
+						class="group bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-700 hover:to-gray-800 text-white p-3 rounded-xl transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-gray-500/50 flex items-center"
+						title="GitHub Profile"
+					>
+						<i
+							class="fab fa-github text-xl mr-2 group-hover:rotate-12 transition-transform"
+						></i>
+						GitHub
+					</a>
+					<a
+						href="https://linkedin.com/in/rifatcs"
+						target="_blank"
+						class="group bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 text-white p-3 rounded-xl transition-all duration-300 transform hover:scale-110 shadow-lg hover:shadow-blue-500/50 flex items-center"
+						title="LinkedIn Profile"
+					>
+						<i
+							class="fab fa-linkedin text-xl mr-2 group-hover:rotate-12 transition-transform"
+						></i>
+						LinkedIn
+					</a>
+				</div>
+				<p class="text-slate-500 dark:text-slate-600 mt-8">
+					© 2025 Md Rifat Hossen. All rights reserved.
+				</p>
+			</div>
+		</footer>
+	</body>
 </html>
