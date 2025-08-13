@@ -259,6 +259,39 @@
 				}
 			}
 
+			/* Modern Loading Screen Animations */
+			@keyframes morph {
+				0%, 100% { border-radius: 1rem; transform: rotate(0deg) scale(1); }
+				25% { border-radius: 50%; transform: rotate(90deg) scale(1.1); }
+				50% { border-radius: 1rem; transform: rotate(180deg) scale(0.9); }
+				75% { border-radius: 50%; transform: rotate(270deg) scale(1.1); }
+			}
+
+			@keyframes gradient-x {
+				0%, 100% { background-position: 0% 50%; }
+				50% { background-position: 100% 50%; }
+			}
+
+			@keyframes wave {
+				0%, 100% { transform: translateY(0) scale(1); opacity: 0.8; }
+				50% { transform: translateY(-8px) scale(1.2); opacity: 1; }
+			}
+
+			@keyframes float-delayed {
+				0%, 100% { transform: translateY(0px) rotate(0deg); }
+				50% { transform: translateY(-20px) rotate(180deg); }
+			}
+
+			@keyframes fade-in {
+				0% { opacity: 0; transform: translateY(20px); }
+				100% { opacity: 1; transform: translateY(0); }
+			}
+
+			@keyframes float-gentle {
+				0%, 100% { transform: translateY(0px) scale(1); opacity: 0.6; }
+				50% { transform: translateY(-15px) scale(1.1); opacity: 1; }
+			}
+
 			/* Content Transition Animation */
 			@keyframes content-fade-in {
 				0% {
@@ -320,6 +353,27 @@
 			.animate-loading-dots-3 {
 				animation: loading-dots 1.4s ease-in-out infinite;
 				animation-delay: 0.4s;
+			}
+			
+			/* Modern Loading Animation Classes */
+			.animate-morph {
+				animation: morph 4s ease-in-out infinite;
+			}
+			.animate-gradient-x {
+				background-size: 400% 400%;
+				animation: gradient-x 3s ease infinite;
+			}
+			.animate-wave {
+				animation: wave 1.5s ease-in-out infinite;
+			}
+			.animate-float-delayed {
+				animation: float-delayed 6s ease-in-out infinite;
+			}
+			.animate-fade-in {
+				animation: fade-in 1s ease-out forwards;
+			}
+			.animate-float-gentle {
+				animation: float-gentle 4s ease-in-out infinite;
 			}
 			
 			/* Hover Animation Classes */
@@ -756,52 +810,102 @@
 	>
 		<!-- Stylish Loading Animation -->
 		<div id="pageLoader" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 overflow-hidden">
-			<!-- Animated Background -->
-			<div class="absolute inset-0">
-				<div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"></div>
-				<div class="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-gradient-to-r from-blue-500/20 to-indigo-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
-				<div class="absolute top-3/4 right-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96 bg-gradient-to-r from-purple-500/20 to-pink-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-float-delayed"></div>
+			<!-- Dynamic Animated Background -->
+			<div class="absolute inset-0 overflow-hidden">
+				<!-- Base gradient -->
+				<div class="absolute inset-0 bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950"></div>
+				
+				<!-- Floating orbs with enhanced animations -->
+				<div class="absolute top-1/4 left-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96">
+					<div class="absolute inset-0 bg-gradient-to-r from-cyan-500/30 to-blue-600/30 rounded-full mix-blend-screen filter blur-3xl animate-float opacity-60"></div>
+					<div class="absolute inset-2 bg-gradient-to-r from-indigo-400/20 to-purple-500/20 rounded-full mix-blend-screen filter blur-2xl animate-pulse"></div>
+				</div>
+				
+				<div class="absolute top-3/4 right-1/4 w-48 h-48 sm:w-72 sm:h-72 md:w-96 md:h-96">
+					<div class="absolute inset-0 bg-gradient-to-r from-purple-500/30 to-pink-600/30 rounded-full mix-blend-screen filter blur-3xl animate-float-delayed opacity-60"></div>
+					<div class="absolute inset-2 bg-gradient-to-r from-violet-400/20 to-fuchsia-500/20 rounded-full mix-blend-screen filter blur-2xl animate-pulse" style="animation-delay: 1s"></div>
+				</div>
+				
+				<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-32 h-32 sm:w-48 sm:h-48 md:w-64 md:h-64">
+					<div class="absolute inset-0 bg-gradient-to-r from-emerald-400/20 to-teal-500/20 rounded-full mix-blend-screen filter blur-3xl animate-spin-slow opacity-40"></div>
+				</div>
+				
+				<!-- Animated particles -->
+				<div class="absolute inset-0">
+					<div class="absolute top-1/3 left-1/6 w-2 h-2 bg-cyan-400 rounded-full animate-float opacity-60" style="animation-duration: 4s"></div>
+					<div class="absolute top-2/3 right-1/6 w-1.5 h-1.5 bg-purple-400 rounded-full animate-float opacity-50" style="animation-duration: 5s; animation-delay: 1s"></div>
+					<div class="absolute top-1/2 left-1/12 w-1 h-1 bg-pink-400 rounded-full animate-float opacity-70" style="animation-duration: 6s; animation-delay: 2s"></div>
+					<div class="absolute top-1/4 right-1/3 w-1.5 h-1.5 bg-indigo-400 rounded-full animate-float opacity-60" style="animation-duration: 7s; animation-delay: 0.5s"></div>
+				</div>
 			</div>
 			
-			<!-- Central Loading Element -->
+			<!-- Central Loading Element with Enhanced Animations -->
 			<div class="relative z-10 text-center px-4">
-				<!-- Animated Logo/Icon -->
-				<div class="relative mb-6 sm:mb-8">
-					<div class="w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 mx-auto relative">
-						<!-- Outer rotating ring -->
-						<div class="absolute inset-0 border-3 sm:border-4 border-transparent border-t-indigo-500 border-r-purple-500 rounded-full animate-spin"></div>
-						<!-- Inner rotating ring -->
-						<div class="absolute inset-1 sm:inset-2 border-3 sm:border-4 border-transparent border-t-purple-500 border-r-pink-500 rounded-full animate-reverse-spin"></div>
-						<!-- Center icon -->
+				<!-- Modern Geometric Loader -->
+				<div class="relative mb-8 sm:mb-12">
+					<div class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 mx-auto relative">
+						<!-- Outer pulsing ring -->
+						<div class="absolute inset-0 border-2 border-cyan-400/30 rounded-full animate-ping"></div>
+						
+						<!-- Rotating geometric shapes -->
+						<div class="absolute inset-2 border-2 border-transparent border-t-cyan-400 border-r-indigo-500 rounded-full animate-spin" style="animation-duration: 2s"></div>
+						<div class="absolute inset-3 border-2 border-transparent border-b-purple-500 border-l-pink-500 rounded-full animate-reverse-spin" style="animation-duration: 3s"></div>
+						
+						<!-- Central morphing shape -->
 						<div class="absolute inset-0 flex items-center justify-center">
-							<div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center">
-								<i class="fas fa-code text-sm sm:text-lg md:text-xl text-white"></i>
+							<div class="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 relative">
+								<!-- Morphing background -->
+								<div class="absolute inset-0 bg-gradient-to-br from-cyan-400 via-indigo-500 to-purple-600 rounded-2xl animate-morph shadow-lg shadow-indigo-500/50"></div>
+								<!-- Icon with glow effect -->
+								<div class="absolute inset-0 flex items-center justify-center">
+									<i class="fas fa-code text-sm sm:text-lg md:text-xl text-white drop-shadow-lg animate-pulse"></i>
+								</div>
 							</div>
+						</div>
+						
+						<!-- Orbiting dots -->
+						<div class="absolute inset-0 animate-spin" style="animation-duration: 8s">
+							<div class="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+						</div>
+						<div class="absolute inset-0 animate-reverse-spin" style="animation-duration: 6s">
+							<div class="absolute top-1/2 -right-1 transform -translate-y-1/2 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse" style="animation-delay: 0.5s"></div>
 						</div>
 					</div>
 				</div>
 				
-				<!-- Loading Text -->
-				<div class="space-y-3 sm:space-y-4">
-					<h1 class="text-2xl sm:text-3xl md:text-4xl font-bold bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+				<!-- Enhanced Loading Text with Typing Effect -->
+				<div class="space-y-4 sm:space-y-6">
+					<!-- Name with gradient animation -->
+					<h1 class="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-400 via-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-gradient-x">
 						Rifat
 					</h1>
-					<div class="flex items-center justify-center space-x-1 sm:space-x-2">
-						<div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-indigo-500 rounded-full animate-bounce"></div>
-						<div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-purple-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
-						<div class="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-pink-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+					
+					<!-- Modern loading indicator -->
+					<div class="flex items-center justify-center space-x-2 sm:space-x-3">
+						<div class="flex space-x-1">
+							<div class="w-2 h-2 bg-gradient-to-r from-cyan-400 to-indigo-500 rounded-full animate-wave"></div>
+							<div class="w-2 h-2 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full animate-wave" style="animation-delay: 0.2s"></div>
+							<div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full animate-wave" style="animation-delay: 0.4s"></div>
+						</div>
+						<span class="text-slate-300 text-sm sm:text-base font-light tracking-wider animate-pulse">
+							Loading
+						</span>
+						<div class="flex space-x-1">
+							<div class="w-2 h-2 bg-gradient-to-r from-pink-500 to-purple-500 rounded-full animate-wave" style="animation-delay: 0.6s"></div>
+							<div class="w-2 h-2 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full animate-wave" style="animation-delay: 0.8s"></div>
+							<div class="w-2 h-2 bg-gradient-to-r from-indigo-500 to-cyan-400 rounded-full animate-wave" style="animation-delay: 1s"></div>
+						</div>
 					</div>
-					<p class="text-slate-300 text-sm sm:text-base md:text-lg font-light tracking-wide opacity-80">
+					
+					<!-- Subtitle with typewriter effect -->
+					<p class="text-slate-300 text-sm sm:text-base md:text-lg font-light tracking-wide opacity-90 animate-fade-in">
 						Crafting Digital Experiences
 					</p>
 				</div>
 				
-				<!-- Progress Bar -->
-				<div class="mt-8 sm:mt-12 w-48 sm:w-56 md:w-64 mx-auto">
-					<div class="h-1 bg-slate-700 rounded-full overflow-hidden">
-						<div id="progressBar" class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full w-0 transition-all duration-300"></div>
-					</div>
-				</div>
+				<!-- Floating Elements -->
+				<div class="absolute top-1/4 left-1/4 w-4 h-4 bg-cyan-400/60 rounded-full animate-float-gentle opacity-70" style="animation-delay: 1s"></div>
+				<div class="absolute bottom-1/4 right-1/4 w-3 h-3 bg-purple-400/60 rounded-full animate-float-gentle opacity-60" style="animation-delay: 2s"></div>
 			</div>
 		</div>
 		<!-- Service: API Gateway (Navigation) -->
@@ -2258,4 +2362,3 @@
 		</footer>
 	</body>
 </html>
-
