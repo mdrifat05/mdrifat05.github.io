@@ -141,6 +141,136 @@
 				}
 			}
 
+			/* Advanced Keyframes for Modern Timeline */
+			@keyframes spin-slow {
+				from {
+					transform: rotate(0deg);
+				}
+				to {
+					transform: rotate(360deg);
+				}
+			}
+			@keyframes reverse-spin {
+				from {
+					transform: rotate(360deg);
+				}
+				to {
+					transform: rotate(0deg);
+				}
+			}
+			@keyframes rotate-y-5 {
+				from {
+					transform: rotateY(0deg);
+				}
+				to {
+					transform: rotateY(5deg);
+				}
+			}
+			@keyframes rotate-y-minus-5 {
+				from {
+					transform: rotateY(0deg);
+				}
+				to {
+					transform: rotateY(-5deg);
+				}
+			}
+			@keyframes glow-pulse {
+				0%, 100% {
+					box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+				}
+				50% {
+					box-shadow: 0 0 40px rgba(99, 102, 241, 0.8), 0 0 60px rgba(99, 102, 241, 0.6);
+				}
+			}
+			@keyframes particle-float {
+				0%, 100% {
+					transform: translateY(0px) translateX(0px);
+					opacity: 0.7;
+				}
+				33% {
+					transform: translateY(-20px) translateX(10px);
+					opacity: 1;
+				}
+				66% {
+					transform: translateY(-10px) translateX(-15px);
+					opacity: 0.8;
+				}
+			}
+
+			/* Loading Screen Animations */
+			@keyframes loading-progress {
+				0% { width: 0%; }
+				50% { width: 70%; }
+				100% { width: 100%; }
+			}
+
+			@keyframes loading-fade-out {
+				0% {
+					opacity: 1;
+					visibility: visible;
+				}
+				90% {
+					opacity: 0.1;
+				}
+				100% {
+					opacity: 0;
+					visibility: hidden;
+				}
+			}
+
+			@keyframes loading-dots {
+				0%, 80%, 100% {
+					transform: scale(0);
+					opacity: 0;
+				}
+				40% {
+					transform: scale(1);
+					opacity: 1;
+				}
+			}
+
+			/* Hover Animations for Visual Elements */
+			@keyframes hover-pulse {
+				0%, 100% {
+					transform: scale(1);
+					filter: brightness(1);
+				}
+				50% {
+					transform: scale(1.05);
+					filter: brightness(1.2);
+				}
+			}
+
+			@keyframes hover-ring-expand {
+				0% {
+					transform: scale(1) rotate(0deg);
+				}
+				100% {
+					transform: scale(1.2) rotate(180deg);
+				}
+			}
+
+			@keyframes hover-geometric-float {
+				0%, 100% {
+					transform: translateY(0px) scale(1);
+				}
+				50% {
+					transform: translateY(-10px) scale(1.1);
+				}
+			}
+
+			/* Content Transition Animation */
+			@keyframes content-fade-in {
+				0% {
+					opacity: 0;
+					transform: translateY(30px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
 			/* Animation Utility Classes */
 			.animate-fadeIn {
 				animation: fadeIn 1s ease-out forwards;
@@ -160,6 +290,75 @@
 			}
 			.animate-bounce-in {
 				animation: bounce-in 0.8s ease-out forwards;
+			}
+			.animate-spin-slow {
+				animation: spin-slow 8s linear infinite;
+			}
+			.animate-reverse-spin {
+				animation: reverse-spin 6s linear infinite;
+			}
+			.animate-glow-pulse {
+				animation: glow-pulse 2s ease-in-out infinite;
+			}
+			.animate-particle-float {
+				animation: particle-float 4s ease-in-out infinite;
+			}
+			.animate-loading-progress {
+				animation: loading-progress 2s ease-out forwards;
+			}
+			.animate-loading-fade-out {
+				animation: loading-fade-out 0.5s ease-out forwards;
+			}
+			.animate-loading-dots-1 {
+				animation: loading-dots 1.4s ease-in-out infinite;
+				animation-delay: 0s;
+			}
+			.animate-loading-dots-2 {
+				animation: loading-dots 1.4s ease-in-out infinite;
+				animation-delay: 0.2s;
+			}
+			.animate-loading-dots-3 {
+				animation: loading-dots 1.4s ease-in-out infinite;
+				animation-delay: 0.4s;
+			}
+			
+			/* Hover Animation Classes */
+			.hover\\:animate-pulse-hover:hover {
+				animation: hover-pulse 0.6s ease-in-out;
+			}
+			
+			.hover\\:animate-ring-expand:hover {
+				animation: hover-ring-expand 0.8s ease-out;
+			}
+			
+			.hover\\:animate-geometric-float:hover {
+				animation: hover-geometric-float 1s ease-in-out infinite;
+			}
+			
+			/* Content Animation Classes */
+			.animate-content-fade-in {
+				animation: content-fade-in 0.8s ease-out forwards;
+			}
+			
+			/* Loading State Classes */
+			.loading-active {
+				overflow: hidden;
+			}
+			
+			.content-hidden {
+				opacity: 0;
+				transform: translateY(20px);
+			}
+
+			/* Perspective and 3D Transform Utilities */
+			.perspective-1000 {
+				perspective: 1000px;
+			}
+			.group:hover .group-hover\\:rotate-y-5 {
+				transform: rotateY(5deg);
+			}
+			.group:hover .group-hover\\:-rotate-y-5 {
+				transform: rotateY(-5deg);
 			}
 
 			/* Code Animation */
@@ -445,23 +644,11 @@
 
 			// Intersection Observer for animations
 			document.addEventListener("DOMContentLoaded", function () {
-				const observerOptions = {
-					threshold: 0.1,
-					rootMargin: "0px 0px -50px 0px",
-				};
-
-				const observer = new IntersectionObserver((entries) => {
-					entries.forEach((entry) => {
-						if (entry.isIntersecting) {
-							entry.target.classList.add("animate-fadeIn");
-						}
-					});
-				}, observerOptions);
-
-				// Observe elements for animation
-				document.querySelectorAll("section").forEach((section) => {
-					observer.observe(section);
-				});
+				// Don't initialize scroll animations immediately if loading screen is present
+				const loader = document.getElementById('pageLoader');
+				if (!loader) {
+					initScrollAnimations();
+				}
 
 				// Typing animation for code
 				const codeElement = document.querySelector(".typing-animation");
@@ -480,15 +667,136 @@
 						icon.style.transform = "rotate(0deg) scale(1)";
 					});
 				});
+
+				// Loading screen functionality
+				window.addEventListener('load', function() {
+					const loader = document.getElementById('pageLoader');
+					const progressBar = document.querySelector('.animate-loading-progress');
+					const mainHeader = document.getElementById('mainHeader');
+					const mainContent = document.getElementById('mainContent');
+					const body = document.body;
+					
+					// Add loading state to body
+					body.classList.add('loading-active');
+					
+					// Start progress bar animation
+					if (progressBar) {
+						progressBar.style.animationPlayState = 'running';
+					}
+					
+					// Hide loader after progress completes and show content with smooth transition
+					setTimeout(() => {
+						if (loader) {
+							loader.classList.add('animate-loading-fade-out');
+							
+							// Remove loading state and show content with animation
+							setTimeout(() => {
+								loader.style.display = 'none';
+								body.classList.remove('loading-active');
+								
+								// Show navigation with smooth animation
+								if (mainHeader) {
+									mainHeader.classList.remove('content-hidden');
+									mainHeader.classList.add('animate-content-fade-in');
+								}
+								
+								// Show main content with smooth animation
+								if (mainContent) {
+									mainContent.classList.remove('content-hidden');
+									mainContent.classList.add('animate-content-fade-in');
+								}
+								
+								// Trigger scroll-based animations after content is visible
+								setTimeout(() => {
+									// Re-initialize intersection observer for scroll animations
+									initScrollAnimations();
+								}, 300);
+								
+							}, 500);
+						}
+					}, 2000);
+				});
+
+				// Separate function to initialize scroll animations
+				function initScrollAnimations() {
+					const observerOptions = {
+						threshold: 0.1,
+						rootMargin: "0px 0px -50px 0px",
+					};
+
+					const observer = new IntersectionObserver((entries) => {
+						entries.forEach((entry) => {
+							if (entry.isIntersecting) {
+								entry.target.classList.add("animate-fadeIn");
+							}
+						});
+					}, observerOptions);
+
+					// Observe elements for animation
+					document.querySelectorAll("section").forEach((section) => {
+						observer.observe(section);
+					});
+				}
 			});
 		</script>
 	</head>
 	<body
 		class="bg-slate-100 dark:bg-slate-900 text-slate-800 dark:text-slate-300 font-sans leading-relaxed"
 	>
+		<!-- Stylish Loading Animation -->
+		<div id="pageLoader" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 overflow-hidden">
+			<!-- Animated Background -->
+			<div class="absolute inset-0">
+				<div class="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900"></div>
+				<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-blue-500/20 to-indigo-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-float"></div>
+				<div class="absolute top-3/4 right-1/4 w-96 h-96 bg-gradient-to-r from-purple-500/20 to-pink-600/20 rounded-full mix-blend-multiply filter blur-3xl animate-float-delayed"></div>
+			</div>
+			
+			<!-- Central Loading Element -->
+			<div class="relative z-10 text-center">
+				<!-- Animated Logo/Icon -->
+				<div class="relative mb-8">
+					<div class="w-24 h-24 mx-auto relative">
+						<!-- Outer rotating ring -->
+						<div class="absolute inset-0 border-4 border-transparent border-t-indigo-500 border-r-purple-500 rounded-full animate-spin"></div>
+						<!-- Inner rotating ring -->
+						<div class="absolute inset-2 border-4 border-transparent border-t-purple-500 border-r-pink-500 rounded-full animate-reverse-spin"></div>
+						<!-- Center icon -->
+						<div class="absolute inset-0 flex items-center justify-center">
+							<div class="w-12 h-12 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 rounded-xl flex items-center justify-center">
+								<i class="fas fa-code text-xl text-white"></i>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<!-- Loading Text -->
+				<div class="space-y-4">
+					<h1 class="text-4xl font-bold bg-gradient-to-r from-indigo-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
+						Rifat
+					</h1>
+					<div class="flex items-center justify-center space-x-2">
+						<div class="w-2 h-2 bg-indigo-500 rounded-full animate-bounce"></div>
+						<div class="w-2 h-2 bg-purple-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+						<div class="w-2 h-2 bg-pink-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+					</div>
+					<p class="text-slate-300 text-lg font-light tracking-wide opacity-80">
+						Crafting Digital Experiences
+					</p>
+				</div>
+				
+				<!-- Progress Bar -->
+				<div class="mt-12 w-64 mx-auto">
+					<div class="h-1 bg-slate-700 rounded-full overflow-hidden">
+						<div id="progressBar" class="h-full bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-full w-0 transition-all duration-300"></div>
+					</div>
+				</div>
+			</div>
+		</div>
 		<!-- Service: API Gateway (Navigation) -->
 		<header
-			class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 shadow-lg"
+			id="mainHeader"
+			class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200 dark:border-slate-800 shadow-lg content-hidden"
 		>
 			<nav
 				class="container mx-auto px-6 py-4 flex justify-between items-center"
@@ -584,7 +892,7 @@
 			</nav>
 		</header>
 
-		<main class="container mx-auto px-6 py-12">
+		<main id="mainContent" class="container mx-auto px-6 py-12 content-hidden">
 			<!-- Service: Identity & Profile (Hero Section) -->
 			<section
 				id="profile"
@@ -774,215 +1082,258 @@
 				</div>
 			</section>
 
-			<!-- Service: Experience Timeline -->
-			<section id="experience" class="py-20">
-				<h2 class="text-5xl font-bold text-center mb-20 relative">
-					<span
-						class="bg-gradient-to-r from-slate-500 to-indigo-400 bg-clip-text text-transparent"
-						>Career Journey</span
-					>
-					<span
-						class="absolute -bottom-3 left-1/2 -translate-x-1/2 w-32 h-1.5 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full"
-					></span>
-				</h2>
+			<!-- Service: Experience Timeline - Compact Modern Design -->
+			<section id="experience" class="py-16 relative overflow-hidden">
+				<!-- Completely Dark Background - No Blue Tint -->
+				<div class="absolute inset-0 bg-slate-50 dark:bg-slate-900"></div>
+				<div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(148,163,184,0.05),transparent_50%)] dark:bg-[radial-gradient(circle_at_30%_20%,rgba(71,85,105,0.1),transparent_50%)]"></div>
+				<div class="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(148,163,184,0.05),transparent_50%)] dark:bg-[radial-gradient(circle_at_70%_80%,rgba(71,85,105,0.1),transparent_50%)]"></div>
 
-				<div class="max-w-6xl mx-auto">
-					<!-- HawarIT Limited -->
+				<!-- Section Header with Better Contrast -->
+				<div class="relative z-10">
+					<h2 class="text-4xl lg:text-5xl font-bold text-center mb-3 tracking-tight">
+						<span class="text-slate-800 dark:text-slate-200">Career</span>
+						<span class="bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent ml-2">Journey</span>
+					</h2>
+					<p class="text-center text-slate-600 dark:text-slate-400 text-lg mb-12 max-w-2xl mx-auto">
+						Transforming ideas into reality through innovative software solutions
+					</p>
+				</div>
+
+				<!-- Compact Timeline Container -->
+				<div class="max-w-5xl mx-auto relative px-4">
+					<!-- Central Timeline Line -->
+					<div class="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-gradient-to-b from-transparent via-indigo-400 to-transparent opacity-60 dark:opacity-80">
+						<div class="absolute inset-0 bg-gradient-to-b from-indigo-400 to-purple-500 animate-pulse"></div>
+					</div>
+
+					<!-- Current Position - HawarIT Limited -->
 					<div class="relative mb-16">
-						<div class="flex flex-col lg:flex-row items-center gap-8">
-							<div class="lg:w-1/2 animate-slideInLeft">
-								<div
-									class="bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl p-8 shadow-2xl hover-lift border border-indigo-300 dark:border-indigo-700"
-								>
-									<div class="flex items-center mb-6">
-										<div class="bg-white/20 rounded-full p-3 mr-4">
-											<i class="fas fa-briefcase text-2xl text-white"></i>
-										</div>
-										<div>
-											<h3 class="text-2xl font-bold text-white">
-												Software Engineer
-											</h3>
-											<p class="text-indigo-100 text-lg">HawarIT Limited</p>
-											<p class="text-indigo-200 text-sm">May 2024 – Present</p>
-										</div>
-									</div>
+						<!-- Timeline Node - Current Position (Active/Animated) -->
+						<div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 z-20">
+							<div class="w-4 h-4 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-full shadow-lg relative">
+								<!-- Animated pulse rings for current position only -->
+								<div class="absolute -inset-2 bg-indigo-400 rounded-full animate-ping opacity-30"></div>
+								<div class="absolute -inset-1 bg-purple-400 rounded-full animate-pulse opacity-20"></div>
+							</div>
+						</div>
 
-									<div class="grid md:grid-cols-2 gap-4 mb-6">
-										<div class="bg-white/10 rounded-lg p-4">
-											<i class="fas fa-globe text-white text-xl mb-2"></i>
-											<p class="text-white text-sm">EU Client Solutions</p>
+						<div class="grid lg:grid-cols-2 gap-8 items-center">
+							<!-- Content Card - Left Side -->
+							<div class="lg:order-1">
+								<div class="group relative max-w-md mx-auto lg:mx-0">
+									<!-- Compact Glass Card -->
+									<div class="relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+										<!-- Header Section -->
+										<div class="flex items-start gap-4 mb-4">
+											<div class="relative">
+												<div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-md">
+													<i class="fas fa-briefcase text-lg text-white"></i>
+												</div>
+												<div class="absolute -top-1 -right-1 w-4 h-4 bg-green-400 rounded-full border-2 border-white dark:border-slate-800 animate-pulse"></div>
+											</div>
+											<div class="flex-1">
+												<div class="flex items-center gap-2 mb-1 flex-wrap">
+													<h3 class="text-lg font-bold text-slate-800 dark:text-slate-200">
+														Software Engineer
+													</h3>
+													<span class="px-2 py-0.5 bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-300 rounded-full text-xs font-semibold">
+														CURRENT
+													</span>
+												</div>
+												<p class="text-base font-semibold text-slate-700 dark:text-slate-300">HawarIT Limited</p>
+												<p class="text-sm text-slate-500 dark:text-slate-400">May 2024 – Present</p>
+											</div>
 										</div>
-										<div class="bg-white/10 rounded-lg p-4">
-											<i class="fas fa-sync-alt text-white text-xl mb-2"></i>
-											<p class="text-white text-sm">Agile Methodology</p>
+
+										<!-- Compact Metrics -->
+										<div class="grid grid-cols-2 gap-3 mb-4">
+											<div class="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 text-center">
+												<i class="fas fa-globe text-blue-600 dark:text-blue-400 text-lg mb-1"></i>
+												<p class="text-xs font-semibold text-slate-700 dark:text-slate-300">EU Clients</p>
+											</div>
+											<div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 text-center">
+												<i class="fas fa-sync-alt text-purple-600 dark:text-purple-400 text-lg mb-1"></i>
+												<p class="text-xs font-semibold text-slate-700 dark:text-slate-300">Agile</p>
+											</div>
 										</div>
-									</div>
 
-									<h4 class="text-lg font-semibold text-white mb-3">
-										Key Achievements:
-									</h4>
-									<ul class="space-y-3 text-indigo-100">
-										<li class="flex items-start">
-											<i
-												class="fas fa-check-circle text-green-300 mt-1 mr-3 flex-shrink-0"
-											></i>
-											<span
-												>Delivered high-quality .NET Core solutions for European
-												clients using Agile methodologies</span
-											>
-										</li>
-										<li class="flex items-start">
-											<i
-												class="fas fa-rocket text-yellow-300 mt-1 mr-3 flex-shrink-0"
-											></i>
-											<span
-												>Built comprehensive CI/CD pipelines with Azure,
-												reducing production errors by 40%</span
-											>
-										</li>
-										<li class="flex items-start">
-											<i
-												class="fas fa-shield-alt text-blue-300 mt-1 mr-3 flex-shrink-0"
-											></i>
-											<span
-												>Enforced coding standards and best practices,
-												increasing unit test coverage to 80%</span
-											>
-										</li>
-									</ul>
+										<!-- Compact Achievements -->
+										<div class="space-y-2 mb-4">
+											<h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">Key Achievements</h4>
+											<div class="space-y-2">
+												<div class="flex items-center gap-3 p-2 rounded-lg bg-green-50 dark:bg-green-900/20">
+													<div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+														<i class="fas fa-check text-white text-xs"></i>
+													</div>
+													<p class="text-xs text-slate-700 dark:text-slate-300">
+														Delivered <span class="font-semibold text-indigo-600 dark:text-indigo-400">.NET Core solutions</span> for EU clients
+													</p>
+												</div>
+												<div class="flex items-center gap-3 p-2 rounded-lg bg-yellow-50 dark:bg-yellow-900/20">
+													<div class="w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+														<i class="fas fa-rocket text-white text-xs"></i>
+													</div>
+													<p class="text-xs text-slate-700 dark:text-slate-300">
+														Built <span class="font-semibold text-indigo-600 dark:text-indigo-400">CI/CD pipelines</span> reducing errors by <span class="font-bold text-green-600 dark:text-green-400">40%</span>
+													</p>
+												</div>
+												<div class="flex items-center gap-3 p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+													<div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+														<i class="fas fa-shield-alt text-white text-xs"></i>
+													</div>
+													<p class="text-xs text-slate-700 dark:text-slate-300">
+														Increased test coverage to <span class="font-bold text-green-600 dark:text-green-400">80%</span>
+													</p>
+												</div>
+											</div>
+										</div>
 
-									<div class="mt-6 flex flex-wrap gap-2">
-										<span
-											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
-											>.NET Core</span
-										>
-										<span
-											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
-											>Azure</span
-										>
-										<span
-											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
-											>CI/CD</span
-										>
-										<span
-											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
-											>Agile</span
-										>
+										<!-- Compact Tech Stack -->
+										<div class="flex flex-wrap gap-1.5">
+											<span class="px-2 py-1 bg-gradient-to-r from-indigo-500 to-purple-600 text-white rounded-lg text-xs font-medium">.NET Core</span>
+											<span class="px-2 py-1 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-lg text-xs font-medium">Azure</span>
+											<span class="px-2 py-1 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg text-xs font-medium">CI/CD</span>
+											<span class="px-2 py-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg text-xs font-medium">Agile</span>
+										</div>
 									</div>
 								</div>
 							</div>
 
-							<div class="lg:w-1/2 flex justify-center">
-								<div
-									class="w-64 h-64 bg-gradient-to-br from-indigo-100 to-purple-100 dark:from-indigo-900 dark:to-purple-900 rounded-full flex items-center justify-center animate-bounce-in"
-								>
-									<i
-										class="fas fa-laptop-code text-6xl text-indigo-600 dark:text-indigo-400"
-									></i>
+							<!-- Enhanced Multi-Layer Visual Element - Right Side -->
+							<div class="lg:order-2 flex justify-center">
+								<div class="relative w-48 h-48 hover:animate-pulse-hover cursor-pointer group">
+									<!-- Multiple Concentric Rings with Different Colors -->
+									<div class="absolute inset-0 border-2 border-indigo-300/40 dark:border-indigo-600/40 rounded-full animate-spin-slow group-hover:animate-ring-expand transition-all duration-300"></div>
+									<div class="absolute inset-2 border-2 border-purple-300/60 dark:border-purple-600/60 rounded-full animate-reverse-spin group-hover:border-purple-400/80 transition-all duration-300"></div>
+									<div class="absolute inset-4 border-2 border-pink-300/50 dark:border-pink-600/50 rounded-full animate-spin-slow group-hover:border-pink-400/70 transition-all duration-300" style="animation-delay: 0.5s;"></div>
+									<div class="absolute inset-6 border-2 border-indigo-400/70 dark:border-indigo-500/70 rounded-full animate-reverse-spin group-hover:border-indigo-500/90 transition-all duration-300" style="animation-delay: 1s;"></div>
+									<div class="absolute inset-8 border-2 border-purple-400/80 dark:border-purple-500/80 rounded-full animate-spin-slow group-hover:border-purple-500/100 transition-all duration-300" style="animation-delay: 1.5s;"></div>
+									
+									<!-- Central Icon with Enhanced Styling -->
+									<div class="absolute inset-0 flex items-center justify-center">
+										<div class="w-20 h-20 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 rounded-2xl flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:shadow-3xl transition-all duration-300">
+											<i class="fas fa-laptop-code text-2xl text-white group-hover:text-yellow-200 transition-colors duration-300"></i>
+										</div>
+									</div>
+
+									<!-- Enhanced Floating Particles -->
+									<div class="absolute top-2 right-2 w-2 h-2 bg-indigo-400 rounded-full animate-bounce group-hover:bg-indigo-300 group-hover:scale-125 transition-all duration-300"></div>
+									<div class="absolute bottom-4 left-4 w-1.5 h-1.5 bg-purple-400 rounded-full animate-pulse group-hover:bg-purple-300 group-hover:scale-150 transition-all duration-300"></div>
+									<div class="absolute top-1/3 left-2 w-1 h-1 bg-pink-400 rounded-full animate-ping"></div>
+									<div class="absolute bottom-1/3 right-2 w-1 h-1 bg-cyan-400 rounded-full animate-bounce" style="animation-delay: 0.3s;"></div>
 								</div>
 							</div>
 						</div>
 					</div>
 
-					<!-- Timeline connector -->
-					<div class="flex justify-center mb-16">
-						<div
-							class="w-1 h-16 bg-gradient-to-b from-indigo-500 to-purple-600 rounded-full"
-						></div>
-					</div>
+					<!-- Previous Position - Bdjobs.com Limited -->
+					<div class="relative">
+						<!-- Timeline Node - Previous Position (Static) -->
+						<div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2 top-1/2 z-20">
+							<div class="w-4 h-4 bg-gradient-to-r from-purple-500 to-pink-600 rounded-full shadow-lg relative">
+								<!-- No animation for previous positions -->
+							</div>
+						</div>
 
-					<!-- Bdjobs.com Limited -->
-					<div class="relative mb-16">
-						<div class="flex flex-col lg:flex-row-reverse items-center gap-8">
-							<div class="lg:w-1/2 animate-slideInRight">
-								<div
-									class="bg-gradient-to-br from-purple-500 to-pink-600 rounded-2xl p-8 shadow-2xl hover-lift border border-purple-300 dark:border-purple-700"
-								>
-									<div class="flex items-center mb-6">
-										<div class="bg-white/20 rounded-full p-3 mr-4">
-											<i class="fas fa-code text-2xl text-white"></i>
-										</div>
-										<div>
-											<h3 class="text-2xl font-bold text-white">
-												Junior Software Engineer
-											</h3>
-											<p class="text-purple-100 text-lg">Bdjobs.com Limited</p>
-											<p class="text-purple-200 text-sm">May 2023 – Apr 2024</p>
-										</div>
-									</div>
-
-									<div class="grid md:grid-cols-2 gap-4 mb-6">
-										<div class="bg-white/10 rounded-lg p-4">
-											<i class="fas fa-database text-white text-xl mb-2"></i>
-											<p class="text-white text-sm">Legacy Migration</p>
-										</div>
-										<div class="bg-white/10 rounded-lg p-4">
-											<i class="fas fa-robot text-white text-xl mb-2"></i>
-											<p class="text-white text-sm">AI Integration</p>
+						<div class="grid lg:grid-cols-2 gap-8 items-center">
+							<!-- Enhanced Layered Rectangles Visual Element - Left Side -->
+							<div class="lg:order-1 flex justify-center">
+								<div class="relative w-48 h-48 hover:animate-geometric-float cursor-pointer group">
+									<!-- Multiple Layered Rounded Rectangles -->
+									<div class="absolute inset-0 transform rotate-12 border-2 border-purple-300/40 dark:border-purple-600/40 rounded-3xl animate-pulse opacity-40 group-hover:border-purple-400/60 group-hover:rotate-[20deg] transition-all duration-500"></div>
+									<div class="absolute inset-2 transform -rotate-6 border-2 border-pink-300/50 dark:border-pink-600/50 rounded-2xl animate-pulse opacity-50 group-hover:border-pink-400/70 group-hover:-rotate-[10deg] transition-all duration-500" style="animation-delay: 0.3s;"></div>
+									<div class="absolute inset-4 transform rotate-3 border-2 border-red-300/60 dark:border-red-600/60 rounded-xl animate-pulse opacity-60 group-hover:border-red-400/80 group-hover:rotate-[8deg] transition-all duration-500" style="animation-delay: 0.6s;"></div>
+									<div class="absolute inset-6 transform -rotate-2 border-2 border-purple-400/70 dark:border-purple-500/70 rounded-lg animate-pulse opacity-70 group-hover:border-purple-500/90 group-hover:-rotate-[5deg] transition-all duration-500" style="animation-delay: 0.9s;"></div>
+									<div class="absolute inset-8 transform rotate-1 border-2 border-pink-400/80 dark:border-pink-500/80 rounded-md animate-pulse opacity-80 group-hover:border-pink-500/100 group-hover:rotate-[3deg] transition-all duration-500" style="animation-delay: 1.2s;"></div>
+									
+									<!-- Central Icon with Enhanced Styling -->
+									<div class="absolute inset-0 flex items-center justify-center">
+										<div class="w-20 h-20 bg-gradient-to-br from-purple-500 via-pink-600 to-red-600 rounded-2xl flex items-center justify-center shadow-2xl group-hover:scale-110 group-hover:shadow-3xl transition-all duration-300">
+											<i class="fas fa-chart-line text-2xl text-white group-hover:text-yellow-200 transition-colors duration-300"></i>
 										</div>
 									</div>
 
-									<h4 class="text-lg font-semibold text-white mb-3">
-										Key Achievements:
-									</h4>
-									<ul class="space-y-3 text-purple-100">
-										<li class="flex items-start">
-											<i
-												class="fas fa-arrow-up text-green-300 mt-1 mr-3 flex-shrink-0"
-											></i>
-											<span
-												>Migrated legacy system to .NET Core, cutting data
-												transfer time by 70%</span
-											>
-										</li>
-										<li class="flex items-start">
-											<i
-												class="fas fa-tachometer-alt text-yellow-300 mt-1 mr-3 flex-shrink-0"
-											></i>
-											<span
-												>Reduced API response time by 60% by adopting MongoDB
-												optimization strategies</span
-											>
-										</li>
-										<li class="flex items-start">
-											<i
-												class="fas fa-brain text-blue-300 mt-1 mr-3 flex-shrink-0"
-											></i>
-											<span
-												>Developed scalable API integrating ChatGPT for
-												AI-powered career counseling</span
-											>
-										</li>
-									</ul>
-
-									<div class="mt-6 flex flex-wrap gap-2">
-										<span
-											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
-											>.NET Core</span
-										>
-										<span
-											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
-											>MongoDB</span
-										>
-										<span
-											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
-											>ChatGPT API</span
-										>
-										<span
-											class="bg-white/20 text-white px-3 py-1 rounded-full text-sm"
-											>Performance</span
-										>
-									</div>
+									<!-- Enhanced Data Streams -->
+									<div class="absolute top-0 left-1/2 w-px h-8 bg-gradient-to-b from-purple-400 to-transparent animate-pulse group-hover:h-12 group-hover:from-purple-300 transition-all duration-300"></div>
+									<div class="absolute bottom-0 left-1/2 w-px h-8 bg-gradient-to-t from-pink-400 to-transparent animate-pulse group-hover:h-12 group-hover:from-pink-300 transition-all duration-300" style="animation-delay: 0.5s;"></div>
+									<div class="absolute left-0 top-1/2 h-px w-8 bg-gradient-to-r from-purple-400 to-transparent animate-pulse group-hover:w-12 group-hover:from-purple-300 transition-all duration-300" style="animation-delay: 1s;"></div>
+									<div class="absolute right-0 top-1/2 h-px w-8 bg-gradient-to-l from-pink-400 to-transparent animate-pulse group-hover:w-12 group-hover:from-pink-300 transition-all duration-300" style="animation-delay: 1.5s;"></div>
 								</div>
 							</div>
 
-							<div class="lg:w-1/2 flex justify-center">
-								<div
-									class="w-64 h-64 bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-900 dark:to-pink-900 rounded-full flex items-center justify-center animate-bounce-in"
-								>
-									<i
-										class="fas fa-chart-line text-6xl text-purple-600 dark:text-purple-400"
-									></i>
+							<!-- Content Card - Right Side -->
+							<div class="lg:order-2">
+								<div class="group relative max-w-md mx-auto lg:mx-0">
+									<!-- Compact Glass Card -->
+									<div class="relative bg-white/80 dark:bg-slate-800/80 backdrop-blur-sm border border-slate-200 dark:border-slate-700 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+										<!-- Header Section -->
+										<div class="flex items-start gap-4 mb-4">
+											<div class="relative">
+												<div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-md">
+													<i class="fas fa-code text-lg text-white"></i>
+												</div>
+											</div>
+											<div class="flex-1">
+												<h3 class="text-lg font-bold text-slate-800 dark:text-slate-200 mb-1">
+													Junior Software Engineer
+												</h3>
+												<p class="text-base font-semibold text-slate-700 dark:text-slate-300">Bdjobs.com Limited</p>
+												<p class="text-sm text-slate-500 dark:text-slate-400">May 2023 – Apr 2024</p>
+											</div>
+										</div>
+
+										<!-- Compact Metrics -->
+										<div class="grid grid-cols-2 gap-3 mb-4">
+											<div class="bg-purple-50 dark:bg-purple-900/20 rounded-lg p-3 text-center">
+												<i class="fas fa-database text-purple-600 dark:text-purple-400 text-lg mb-1"></i>
+												<p class="text-xs font-semibold text-slate-700 dark:text-slate-300">Legacy Migration</p>
+											</div>
+											<div class="bg-pink-50 dark:bg-pink-900/20 rounded-lg p-3 text-center">
+												<i class="fas fa-robot text-pink-600 dark:text-pink-400 text-lg mb-1"></i>
+												<p class="text-xs font-semibold text-slate-700 dark:text-slate-300">AI Integration</p>
+											</div>
+										</div>
+
+										<!-- Compact Achievements -->
+										<div class="space-y-2 mb-4">
+											<h4 class="text-sm font-bold text-slate-800 dark:text-slate-200">Key Achievements</h4>
+											<div class="space-y-2">
+												<div class="flex items-center gap-3 p-2 rounded-lg bg-green-50 dark:bg-green-900/20">
+													<div class="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center flex-shrink-0">
+														<i class="fas fa-arrow-up text-white text-xs"></i>
+													</div>
+													<p class="text-xs text-slate-700 dark:text-slate-300">
+														Migrated to <span class="font-semibold text-purple-600 dark:text-purple-400">.NET Core</span>, cutting transfer time by <span class="font-bold text-green-600 dark:text-green-400">70%</span>
+													</p>
+												</div>
+												<div class="flex items-center gap-3 p-2 rounded-lg bg-yellow-50 dark:bg-yellow-900/20">
+													<div class="w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center flex-shrink-0">
+														<i class="fas fa-tachometer-alt text-white text-xs"></i>
+													</div>
+													<p class="text-xs text-slate-700 dark:text-slate-300">
+														Reduced API response by <span class="font-bold text-green-600 dark:text-green-400">60%</span> with MongoDB optimization
+													</p>
+												</div>
+												<div class="flex items-center gap-3 p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20">
+													<div class="w-5 h-5 bg-blue-500 rounded-full flex items-center justify-center flex-shrink-0">
+														<i class="fas fa-brain text-white text-xs"></i>
+													</div>
+													<p class="text-xs text-slate-700 dark:text-slate-300">
+														Integrated <span class="font-semibold text-purple-600 dark:text-purple-400">ChatGPT</span> for AI career counseling
+													</p>
+												</div>
+											</div>
+										</div>
+
+										<!-- Compact Tech Stack -->
+										<div class="flex flex-wrap gap-1.5">
+											<span class="px-2 py-1 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-lg text-xs font-medium">.NET Core</span>
+											<span class="px-2 py-1 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg text-xs font-medium">MongoDB</span>
+											<span class="px-2 py-1 bg-gradient-to-r from-blue-500 to-indigo-600 text-white rounded-lg text-xs font-medium">ChatGPT API</span>
+											<span class="px-2 py-1 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-lg text-xs font-medium">Performance</span>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -1195,7 +1546,15 @@
 									<span class="text-white text-sm font-semibold">DevOps</span>
 								</div>
 							</div>
-							<h3 class="text-2xl font-bold text-white mb-2">CloudFlow</h3>
+							<div class="flex items-center gap-3 mb-2">
+								<h3 class="text-2xl font-bold text-white">CloudFlow</h3>
+								<span
+									class="inline-flex items-center bg-amber-100 dark:bg-amber-900/40 text-amber-800 dark:text-amber-300 text-sm font-medium px-3 py-1 rounded-full border border-amber-200/60 dark:border-amber-800/60 transition-colors duration-300 group-hover:bg-amber-200 dark:group-hover:bg-amber-800"
+								>
+									<span class="w-2 h-2 mr-2 rounded-full bg-amber-500 animate-pulse shadow-[0_0_0_3px_rgba(251,191,36,0.25)]"></span>
+									Ongoing
+								</span>
+							</div>
 							<p class="text-blue-100">CI/CD Pipeline Automation</p>
 						</div>
 						<div class="p-6">
@@ -1205,6 +1564,8 @@
 								A sophisticated CI/CD pipeline visualizer built with real-time
 								updates and Azure DevOps integration.
 							</p>
+
+                            
 
 							<div class="space-y-3 mb-6">
 								<div
@@ -1848,11 +2209,3 @@
 		</footer>
 	</body>
 </html>
-
-
-
-
-
-
-
-
